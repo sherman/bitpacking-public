@@ -14,7 +14,7 @@ import org.openjdk.jmh.infra.Blackhole;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
-@Fork(value = 0, jvmArgsAppend = {"--add-modules=jdk.incubator.vector", "-Xms512m", "-Xmx1g"})
+@Fork(value = 2, jvmArgsAppend = {"--add-modules=jdk.incubator.vector", "-Xms512m", "-Xmx1g"})
 public class VectorCodecBenchmark {
 
     @Param({"1", "3", "8", "13", "16", "24", "31", "32", "-1"})
