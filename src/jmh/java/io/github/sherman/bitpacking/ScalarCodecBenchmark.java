@@ -1,12 +1,12 @@
 package io.github.sherman.bitpacking;
 
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
 /**
+ * Measures the scalar backend directly, with API-equivalent range checks.
  * Results are ns per entire working set; divide by blocks to obtain ns/block.
  */
 @State(Scope.Thread)
@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
-@Fork(value = 3, jvmArgsAppend = {"--add-modules=jdk.incubator.vector", "-Xms512m", "-Xmx1g"})
-public class CodecBenchmark {
+@Fork(value = 0, jvmArgsAppend = {"--add-modules=jdk.incubator.vector", "-Xms512m", "-Xmx1g"})
+public class ScalarCodecBenchmark {
 
-    @Param({"0", "1", "3", "8", "13", "16", "24", "31", "32", "-1"})
+    @Param({"1", "3", "8", "13", "16", "24", "31", "32", "-1"})
     public int bits;
 
     @Param({"0", "1", "2"})
@@ -26,24 +26,16 @@ public class CodecBenchmark {
     @Param({"1", "64", "262144"})
     public int blocks;
 
-    @Param({"vector", "scalar"})
-    public String backend;
-
     private int[] values;
     private int[] decoded;
     private byte[] compressed;
     private int[] widths;
     private int[] offsets;
-    private boolean scalar;
 
     @Setup(Level.Trial)
     public void setup() {
         if (!System.getProperty("bitpacking.benchmark.storage", "byte").equals("byte")) {
             throw new IllegalArgumentException("Word-storage experiments were removed; use their archived benchmark JARs");
-        }
-        scalar = backend.equals("scalar");
-        if (!backend.equals("vector") && !scalar) {
-            throw new IllegalArgumentException("Unknown backend: " + backend);
         }
         if (!Boolean.parseBoolean(System.getProperty("bitpacking.benchmark.codec16", "true"))) {
             throw new IllegalArgumentException("Four-stream benchmarks were removed; use their archived JARs");
@@ -68,7 +60,7 @@ public class CodecBenchmark {
                 state ^= state << 5;
                 int d = state & mask;
                 if (mode != 0) {
-                    d = i == 0 ? (b == 0 ? 0 : 1 << (b - 1)) : d & 1023;
+                    d = i == 0 ? (1 << (b - 1)) : d & 1023;
                 }
                 if (mode == 0 && i == 0) {
                     d = mask;
@@ -126,49 +118,25 @@ public class CodecBenchmark {
 
     private int width(int block) {
         int offset = block * BitPacker16x.BLOCK_LEN;
-        if (scalar) {
-            Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
-            return ScalarSupport.numBits(values, offset, mode, 0);
-        }
-        return switch (mode) {
-            case 0 -> BitPacker16x.numBits(values, offset);
-            case 1 -> BitPacker16x.numBitsSorted(0, values, offset);
-            case 2 -> BitPacker16x.numBitsStrictlySorted(0, values, offset);
-            default -> throw new AssertionError();
-        };
+        Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
+        return ScalarKernels.numBits(values, offset, mode, 0);
     }
 
-    private void compressBlock(int block, int b) {
+    private void compressBlock(int block, int bits) {
         int offset = block * BitPacker16x.BLOCK_LEN;
         int dest = offsets[block];
-        if (scalar) {
-            Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
-            Objects.checkFromIndexSize(dest, BitPacker16x.compressedBlockSize(b), compressed.length);
-            Scalar16Kernels.pack(values, offset, compressed, dest, b, mode, 0);
-        } else {
-            switch (mode) {
-                case 0 -> BitPacker16x.compress(values, offset, compressed, dest, b);
-                case 1 -> BitPacker16x.compressSorted(0, values, offset, compressed, dest, b);
-                case 2 -> BitPacker16x.compressStrictlySorted(0, values, offset, compressed, dest, b);
-                default -> throw new AssertionError();
-            }
-        }
+        int size = BitPacker16x.compressedBlockSize(bits);
+        Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
+        Objects.checkFromIndexSize(dest, size, compressed.length);
+        ScalarKernels.pack(values, offset, compressed, dest, bits, mode, 0);
     }
 
-    private void decompressBlock(int block, int b) {
+    private void decompressBlock(int block, int bits) {
         int offset = offsets[block];
         int dest = block * BitPacker16x.BLOCK_LEN;
-        if (scalar) {
-            Objects.checkFromIndexSize(offset, BitPacker16x.compressedBlockSize(b), compressed.length);
-            Objects.checkFromIndexSize(dest, BitPacker16x.BLOCK_LEN, decoded.length);
-            Scalar16Kernels.unpack(compressed, offset, decoded, dest, b, mode, 0);
-        } else {
-            switch (mode) {
-                case 0 -> BitPacker16x.decompress(compressed, offset, decoded, dest, b);
-                case 1 -> BitPacker16x.decompressSorted(0, compressed, offset, decoded, dest, b);
-                case 2 -> BitPacker16x.decompressStrictlySorted(0, compressed, offset, decoded, dest, b);
-                default -> throw new AssertionError();
-            }
-        }
+        int size = BitPacker16x.compressedBlockSize(bits);
+        Objects.checkFromIndexSize(offset, size, compressed.length);
+        Objects.checkFromIndexSize(dest, BitPacker16x.BLOCK_LEN, decoded.length);
+        ScalarKernels.unpack(compressed, offset, decoded, dest, bits, mode, 0);
     }
 }

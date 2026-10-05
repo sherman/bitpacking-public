@@ -3,10 +3,22 @@ package io.github.sherman.bitpacking;
 import java.util.Arrays;
 
 /**
- * Portable fallback for the sixteen-stream representation. Ranges are checked by the API.
+ * Scalar width detection and sixteen-stream packing for widths 1–32. Ranges are checked by the API.
+ * Modes are 0 (plain), 1 (sorted), and 2 (strictly sorted).
  */
-final class Scalar16Kernels {
-    private Scalar16Kernels() {}
+final class ScalarKernels {
+    private ScalarKernels() {}
+
+    static int numBits(int[] input, int offset, int mode, int initial) {
+        int union = 0;
+        int previous = initial;
+        for (int i = 0; i < 128; i++) {
+            int value = input[offset + i];
+            union |= mode == 0 ? value : value - previous - (mode == 2 ? 1 : 0);
+            previous = value;
+        }
+        return 32 - Integer.numberOfLeadingZeros(union | 1);
+    }
 
     private static int byteIndex(int bits, int lane, int position) {
         int word = position >>> 5;
