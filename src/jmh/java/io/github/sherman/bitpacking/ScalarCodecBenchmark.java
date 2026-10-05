@@ -1,12 +1,15 @@
 package io.github.sherman.bitpacking;
 
 import java.util.Objects;
+import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
 /**
  * Measures the scalar backend directly, with API-equivalent range checks.
+ * Regenerates inputs before each warmup and measurement iteration, outside timed operations.
+ * Uses strictly positive int inputs with exact widths 1–31 and a reproducible random sequence.
  * Results are ns per entire working set; divide by blocks to obtain ns/block.
  */
 @State(Scope.Thread)
@@ -17,7 +20,7 @@ import org.openjdk.jmh.infra.Blackhole;
 @Fork(value = 2, jvmArgsAppend = {"--add-modules=jdk.incubator.vector", "-Xms512m", "-Xmx1g"})
 public class ScalarCodecBenchmark {
 
-    @Param({"1", "3", "8", "13", "16", "24", "31", "32", "-1"})
+    @Param({"1", "3", "8", "13", "16", "24", "31", "-1"})
     public int bits;
 
     @Param({"0", "1", "2"})
@@ -31,12 +34,17 @@ public class ScalarCodecBenchmark {
     private byte[] compressed;
     private int[] widths;
     private int[] offsets;
+    private SplittableRandom random;
 
     @Setup(Level.Trial)
     public void setup() {
+        if (bits != -1 && (bits < 1 || bits > 31)) {
+            throw new IllegalArgumentException("Positive int inputs require bit widths 1–31, or -1 for mixed widths");
+        }
         if (!System.getProperty("bitpacking.benchmark.storage", "byte").equals("byte")) {
             throw new IllegalArgumentException("Word-storage experiments were removed; use their archived benchmark JARs");
         }
+
         if (!Boolean.parseBoolean(System.getProperty("bitpacking.benchmark.codec16", "true"))) {
             throw new IllegalArgumentException("Four-stream benchmarks were removed; use their archived JARs");
         }
@@ -45,8 +53,12 @@ public class ScalarCodecBenchmark {
         compressed = new byte[blocks * BitPacker16x.MAX_COMPRESSED_BYTES];
         widths = new int[blocks];
         offsets = new int[blocks];
-        int[] mixed = {1, 3, 8, 13, 16, 24, 31, 32};
-        int state = 0x12345678;
+        random = new SplittableRandom(0x12345678L);
+    }
+
+    @Setup(Level.Iteration)
+    public void regenerateInputs() {
+        int[] mixed = {1, 3, 8, 13, 16, 24, 31};
         int offset = 0;
         for (int block = 0; block < blocks; block++) {
             int b = bits == -1 ? mixed[block % mixed.length] : bits;
@@ -55,10 +67,7 @@ public class ScalarCodecBenchmark {
             int mask = (int) ((1L << b) - 1);
             int previous = 0;
             for (int i = 0; i < BitPacker16x.BLOCK_LEN; i++) {
-                state ^= state << 13;
-                state ^= state >>> 17;
-                state ^= state << 5;
-                int d = state & mask;
+                int d = mode == 0 ? random.nextInt(mask) + 1 : random.nextInt() & mask;
                 if (mode != 0) {
                     d = i == 0 ? (1 << (b - 1)) : d & 1023;
                 }

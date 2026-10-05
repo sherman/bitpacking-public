@@ -76,39 +76,44 @@ mvn -Pbenchmarks verify
 
 ## Benchmarks
 
-The benchmark profile produces `target/bitpacking-java-0.1.0-SNAPSHOT-benchmarks.jar`.
-Run it with `java --add-modules=jdk.incubator.vector -jar <jar>`. Each operation
-processes the whole working set. To convert ns/op to ns/block, divide the result
-by `blocks`.
+Results below measure the vector kernels with one 128-integer block,
+averaged equally across widths 1, 3, 8, 13, 16, 24, and 31.
+Positive random inputs are regenerated before each iteration, outside timing;
+buffers are reused. Throughput is `128 × 10⁹ / average ns/op`.
 
-The two benchmark classes are standalone, with their own setup and benchmark
-methods. They use identical inputs, parameters, and workloads, and call their
-kernels directly with the same range checks:
+### Plain mode
+
+| Operation | Average ns/op | Billion integers/s |
+|---|---:|---:|
+| Compress | 4.982857 | 25.688073 |
+| Decompress | 4.290429 | 29.833849 |
+
+### Sorted mode (deltas)
+
+| Operation | Average ns/op | Billion integers/s |
+|---|---:|---:|
+| Compress | 5.909571 | 21.659777 |
+| Decompress | 14.742857 | 8.682171 |
+
+All suites call kernels directly with range checks and support `detect`,
+`compress`, `decompress`, and `detectAndCompress`.
 
 | Suite | Backend |
 |---|---|
 | `ScalarCodecBenchmark` | Always `ScalarKernels` |
 | `VectorCodecBenchmark` | Always `Vector512Kernels`; requires preferred vector size ≥512 bits |
 
-Select a suite by name. Both have `detect`, `compress`, `decompress`, and
-`detectAndCompress` operations. The old `backend` parameter is no longer supported.
-
 | Parameter | Meaning |
 |---|---|
-| `bits` | Width 1 to 32; `-1` cycles through 1, 3, 8, 13, 16, 24, 31, 32 across blocks |
+| `bits` | Width 1 to 31; `-1` cycles through 1, 3, 8, 13, 16, 24, 31 across blocks |
 | `mode` | `0`: plain; `1`: sorted; `2`: strictly sorted |
 | `blocks` | Number of 128-integer blocks processed by one benchmark operation |
 
-For example:
+Build with `mvn -Pbenchmarks verify`, then run:
 
 ```sh
 JAR=target/bitpacking-java-0.1.0-SNAPSHOT-benchmarks.jar
 java --add-modules=jdk.incubator.vector -jar "$JAR" \
-  'ScalarCodecBenchmark.*' -p bits=13 -p mode=0 -p blocks=1 -f 1
-java --add-modules=jdk.incubator.vector -jar "$JAR" \
-  'VectorCodecBenchmark.*' -p bits=13 -p mode=0 -p blocks=1 -f 1
+  'VectorCodecBenchmark.(compress|decompress)$' \
+  -p bits=1,3,8,13,16,24,31 -p mode=0,1 -p blocks=1 -f 2
 ```
-
-The default is zero forks. Use `-f 1`, as in the examples, to measure in a fresh
-JVM. These benchmarks call the kernels directly, so public API backend selection
-and `bitpacking.scalar` have no effect.
