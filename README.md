@@ -76,6 +76,9 @@ mvn -Pbenchmarks verify
 
 ## Benchmarks
 
+Hardware: AMD Ryzen 9 9900X3D (12 cores / 24 threads, AVX-512,
+128 MiB L3 cache), 64 GB RAM.
+
 Results below measure the vector kernels with one 128-integer block,
 averaged equally across widths 1, 3, 8, 13, 16, 24, and 31.
 Positive random inputs are regenerated before each iteration, outside timing;
