@@ -64,8 +64,7 @@ consecutive strictly sorted values: each uses one bit per value. Passing width
 
 The static method signatures and byte format for widths 1 to 32 are unchanged.
 Replace `BitPackingCodec.BITPACKER16X.method(...)` calls with
-`BitPacker16x.method(...)`. The enum facade and zero-width decoding have been
-removed. Migrate any stored zero-width blocks before using this version.
+`BitPacker16x.method(...)`. The enum facade has been removed.
 
 ## Build and test
 
