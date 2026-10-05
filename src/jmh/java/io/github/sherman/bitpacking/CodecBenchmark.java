@@ -48,9 +48,9 @@ public class CodecBenchmark {
         if (!Boolean.parseBoolean(System.getProperty("bitpacking.benchmark.codec16", "true"))) {
             throw new IllegalArgumentException("Four-stream benchmarks were removed; use their archived JARs");
         }
-        values = new int[blocks * 128];
+        values = new int[blocks * BitPacker16x.BLOCK_LEN];
         decoded = new int[values.length];
-        compressed = new byte[blocks * 512];
+        compressed = new byte[blocks * BitPacker16x.MAX_COMPRESSED_BYTES];
         widths = new int[blocks];
         offsets = new int[blocks];
         int[] mixed = {1, 3, 8, 13, 16, 24, 31, 32};
@@ -62,51 +62,57 @@ public class CodecBenchmark {
             offsets[block] = offset;
             int mask = (int) ((1L << b) - 1);
             int previous = 0;
-            for (int i = 0; i < 128; i++) {
+            for (int i = 0; i < BitPacker16x.BLOCK_LEN; i++) {
                 state ^= state << 13;
                 state ^= state >>> 17;
                 state ^= state << 5;
                 int d = state & mask;
-                if (mode != 0)
+                if (mode != 0) {
                     d = i == 0 ? (b == 0 ? 0 : 1 << (b - 1)) : d & 1023;
-                if (mode == 0 && i == 0)
+                }
+                if (mode == 0 && i == 0) {
                     d = mask;
+                }
                 int value = mode == 0 ? d : previous + d + (mode == 2 ? 1 : 0);
-                values[block * 128 + i] = value;
+                values[block * BitPacker16x.BLOCK_LEN + i] = value;
                 previous = value;
             }
             compressBlock(block, b);
             decompressBlock(block, b);
-            if (width(block) != b)
+            if (width(block) != b) {
                 throw new AssertionError("Invalid benchmark bit width");
-            for (int i = 0; i < 128; i++) {
-                if (values[block * 128 + i] != decoded[block * 128 + i]) {
+            }
+            for (int i = 0; i < BitPacker16x.BLOCK_LEN; i++) {
+                if (values[block * BitPacker16x.BLOCK_LEN + i] != decoded[block * BitPacker16x.BLOCK_LEN + i]) {
                     throw new AssertionError("Invalid benchmark data");
                 }
             }
-            offset += b * 16;
+            offset += BitPacker16x.compressedBlockSize(b);
         }
     }
 
     @Benchmark
     public int detect() {
         int sum = 0;
-        for (int block = 0; block < blocks; block++)
+        for (int block = 0; block < blocks; block++) {
             sum += width(block);
+        }
         return sum;
     }
 
     @Benchmark
     public void compress(Blackhole blackhole) {
-        for (int block = 0; block < blocks; block++)
+        for (int block = 0; block < blocks; block++) {
             compressBlock(block, widths[block]);
+        }
         blackhole.consume(compressed);
     }
 
     @Benchmark
     public void decompress(Blackhole blackhole) {
-        for (int block = 0; block < blocks; block++)
+        for (int block = 0; block < blocks; block++) {
             decompressBlock(block, widths[block]);
+        }
         blackhole.consume(decoded);
     }
 
@@ -119,9 +125,9 @@ public class CodecBenchmark {
     }
 
     private int width(int block) {
-        int offset = block * 128;
+        int offset = block * BitPacker16x.BLOCK_LEN;
         if (scalar) {
-            Objects.checkFromIndexSize(offset, 128, values.length);
+            Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
             return ScalarSupport.numBits(values, offset, mode, 0);
         }
         return switch (mode) {
@@ -133,10 +139,10 @@ public class CodecBenchmark {
     }
 
     private void compressBlock(int block, int b) {
-        int offset = block * 128;
+        int offset = block * BitPacker16x.BLOCK_LEN;
         int dest = offsets[block];
         if (scalar) {
-            Objects.checkFromIndexSize(offset, 128, values.length);
+            Objects.checkFromIndexSize(offset, BitPacker16x.BLOCK_LEN, values.length);
             Objects.checkFromIndexSize(dest, BitPacker16x.compressedBlockSize(b), compressed.length);
             Scalar16Kernels.pack(values, offset, compressed, dest, b, mode, 0);
         } else {
@@ -151,10 +157,10 @@ public class CodecBenchmark {
 
     private void decompressBlock(int block, int b) {
         int offset = offsets[block];
-        int dest = block * 128;
+        int dest = block * BitPacker16x.BLOCK_LEN;
         if (scalar) {
             Objects.checkFromIndexSize(offset, BitPacker16x.compressedBlockSize(b), compressed.length);
-            Objects.checkFromIndexSize(dest, 128, decoded.length);
+            Objects.checkFromIndexSize(dest, BitPacker16x.BLOCK_LEN, decoded.length);
             Scalar16Kernels.unpack(compressed, offset, decoded, dest, b, mode, 0);
         } else {
             switch (mode) {

@@ -1,14 +1,13 @@
 package io.github.sherman.bitpacking;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 class BitPackingCodecTest {
     private static final int CANARY = 0x76543210;
@@ -20,8 +19,9 @@ class BitPackingCodecTest {
         Random random = new Random(419373L);
         for (int bits = 0; bits <= 32; bits++) {
             int mask = (int) ((1L << bits) - 1);
-            for (int mode = 0; mode <= 3; mode++) {
-                int initial = mode == 3 ? -1 : 37;
+            for (int mode = 0; mode <= 4; mode++) {
+                int initial = mode == 3 ? -1 : mode == 4 ? 0 : 37;
+                boolean strict = mode == 2 || mode == 3;
                 int[] input = new int[3 + 128];
                 Arrays.fill(input, CANARY);
                 int[] deltas = new int[128];
@@ -30,7 +30,7 @@ class BitPackingCodecTest {
                     // Force exactly the requested width while keeping sorted input unsigned-monotonic.
                     int delta = i == 0 ? (bits == 0 ? 0 : 1 << (bits - 1)) : random.nextInt() & mask & 1023;
                     deltas[i] = delta;
-                    input[3 + i] = mode == 0 ? delta : previous + delta + (mode >= 2 ? 1 : 0);
+                    input[3 + i] = mode == 0 ? delta : previous + delta + (strict ? 1 : 0);
                     previous = input[3 + i];
                 }
                 int[] saved = input.clone();
@@ -60,9 +60,9 @@ class BitPackingCodecTest {
 
     @Test
     void chainedBlocksPreserveInitialValues() {
-        BitPackingCodec[] codecs = {BitPackingCodec.BITPACKER16X, BitPackingCodec.BITPACKER16X, BitPackingCodec.BITPACKER16X,
-                BitPackingCodec.BITPACKER16X};
-        int[] input = new int[codecs.length * 128];
+        BitPackingCodec codec = BitPackingCodec.BITPACKER16X;
+        int blocks = 4;
+        int[] input = new int[blocks * BitPackingCodec.BLOCK_LEN];
         int value = 0;
         for (int i = 0; i < input.length; i++) {
             if (i != 0) {
@@ -70,23 +70,23 @@ class BitPackingCodecTest {
             }
             input[i] = value;
         }
-        int[] widths = new int[codecs.length];
-        int[] offsets = new int[codecs.length];
-        byte[] packed = new byte[codecs.length * BitPackingCodec.MAX_COMPRESSED_BYTES];
+        int[] widths = new int[blocks];
+        int[] offsets = new int[blocks];
+        byte[] packed = new byte[blocks * BitPackingCodec.MAX_COMPRESSED_BYTES];
         int position = 0;
-        for (int block = 0; block < codecs.length; block++) {
-            int start = block * 128;
+        for (int block = 0; block < blocks; block++) {
+            int start = block * BitPackingCodec.BLOCK_LEN;
             int initial = block == 0 ? -1 : input[start - 1];
-            widths[block] = codecs[block].numBitsStrictlySorted(initial, input, start);
+            widths[block] = codec.numBitsStrictlySorted(initial, input, start);
             offsets[block] = position;
-            position += codecs[block].compressStrictlySorted(initial, input, start, packed, position, widths[block]);
+            position += codec.compressStrictlySorted(initial, input, start, packed, position, widths[block]);
         }
         int[] output = new int[input.length];
-        for (int block = 0; block < codecs.length; block++) {
-            int start = block * 128;
+        for (int block = 0; block < blocks; block++) {
+            int start = block * BitPackingCodec.BLOCK_LEN;
             int initial = block == 0 ? -1 : output[start - 1];
-            assertEquals(codecs[block].compressedBlockSize(widths[block]),
-                    codecs[block].decompressStrictlySorted(initial, packed, offsets[block], output, start, widths[block]));
+            assertEquals(codec.compressedBlockSize(widths[block]),
+                codec.decompressStrictlySorted(initial, packed, offsets[block], output, start, widths[block]));
         }
         assertArrayEquals(input, output);
     }
@@ -100,7 +100,7 @@ class BitPackingCodecTest {
         Arrays.fill(packed, (byte) 0x5a);
         int[] savedInput = input.clone();
         byte[] savedPacked = packed.clone();
-        for (int mode = 0; mode <= 3; mode++) {
+        for (int mode = 0; mode <= 4; mode++) {
             int m = mode;
             for (int bits : new int[]{-1, 33}) {
                 assertThrows(IllegalArgumentException.class, () -> pack(codec, m, 0, input, 0, packed, 0, bits));
@@ -142,6 +142,7 @@ class BitPackingCodecTest {
             case 1 -> codec.numBitsSorted(initial, input, offset);
             case 2 -> codec.numBitsStrictlySorted(initial, input, offset);
             case 3 -> codec.numBitsStrictlySorted(input, offset);
+            case 4 -> codec.numBitsSorted(input, offset);
             default -> throw new AssertionError();
         };
     }
@@ -152,6 +153,7 @@ class BitPackingCodecTest {
             case 1 -> codec.compressSorted(initial, input, ip, output, op, bits);
             case 2 -> codec.compressStrictlySorted(initial, input, ip, output, op, bits);
             case 3 -> codec.compressStrictlySorted(input, ip, output, op, bits);
+            case 4 -> codec.compressSorted(input, ip, output, op, bits);
             default -> throw new AssertionError();
         };
     }
@@ -162,6 +164,7 @@ class BitPackingCodecTest {
             case 1 -> codec.decompressSorted(initial, input, ip, output, op, bits);
             case 2 -> codec.decompressStrictlySorted(initial, input, ip, output, op, bits);
             case 3 -> codec.decompressStrictlySorted(input, ip, output, op, bits);
+            case 4 -> codec.decompressSorted(input, ip, output, op, bits);
             default -> throw new AssertionError();
         };
     }

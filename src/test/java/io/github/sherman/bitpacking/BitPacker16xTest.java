@@ -1,32 +1,28 @@
 package io.github.sherman.bitpacking;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BitPacker16xTest {
     private static final int CANARY = 0x76543210;
 
     @ParameterizedTest
-    @ValueSource(ints = {
-            0, 1, 2, 3, 4, 5, 6, 7, 8,
-            9, 10, 11, 12, 13, 14, 15, 16,
-            17, 18, 19, 20, 21, 22, 23, 24,
-            25, 26, 27, 28, 29, 30, 31, 32
-    })
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+        31, 32})
     void allWidthsModesOffsetsAndExactBuffers(int bits) {
         Random random = new Random(871223L + bits);
         int mask = (int) ((1L << bits) - 1);
-        for (int mode = 0; mode < 3; mode++) {
+        for (int mode = 0; mode < 5; mode++) {
+            int kernelMode = mode == 3 ? 2 : mode == 4 ? 1 : mode;
             for (int trial = 0; trial < 12; trial++) {
                 int ip = trial % 5, bp = trial % 7, op = trial % 3;
-                int initial = trial == 0 ? -1 : random.nextInt();
+                int initial = mode == 3 ? -1 : mode == 4 ? 0 : trial == 0 ? -1 : random.nextInt();
                 int[] values = new int[ip + 128];
                 int[] deltas = new int[128];
                 Arrays.fill(values, CANARY);
@@ -34,7 +30,7 @@ class BitPacker16xTest {
                 for (int i = 0; i < 128; i++) {
                     int d = trial == 0 ? 0 : trial == 1 ? mask : random.nextInt() & mask;
                     deltas[i] = d;
-                    values[ip + i] = mode == 0 ? d : previous + d + (mode == 2 ? 1 : 0);
+                    values[ip + i] = kernelMode == 0 ? d : previous + d + (kernelMode == 2 ? 1 : 0);
                     previous = values[ip + i];
                 }
                 int[] saved = values.clone();
@@ -54,10 +50,10 @@ class BitPacker16xTest {
                     assertEquals(CANARY, decoded[i]);
                 }
                 byte[] scalar = new byte[expected.length];
-                Scalar16Kernels.pack(values, ip, scalar, 0, bits, mode, initial);
+                Scalar16Kernels.pack(values, ip, scalar, 0, bits, kernelMode, initial);
                 assertArrayEquals(expected, scalar);
                 int[] scalarOutput = new int[128];
-                Scalar16Kernels.unpack(packed, bp, scalarOutput, 0, bits, mode, initial);
+                Scalar16Kernels.unpack(packed, bp, scalarOutput, 0, bits, kernelMode, initial);
                 assertArrayEquals(Arrays.copyOfRange(values, ip, values.length), scalarOutput);
                 assertArrayEquals(saved, values);
 
@@ -145,7 +141,7 @@ class BitPacker16xTest {
         Arrays.fill(packed, (byte) 0x5a);
         int[] savedValues = values.clone();
         byte[] savedPacked = packed.clone();
-        for (int mode = 0; mode < 3; mode++) {
+        for (int mode = 0; mode < 5; mode++) {
             final int m = mode;
             for (int bad : new int[]{-1, 33, Integer.MIN_VALUE, Integer.MAX_VALUE}) {
                 assertThrows(IllegalArgumentException.class, () -> pack(m, 0, values, 0, packed, 0, bad));
@@ -196,6 +192,8 @@ class BitPacker16xTest {
             case 0 -> BitPacker16x.compress(in, ip, out, op, bits);
             case 1 -> BitPacker16x.compressSorted(initial, in, ip, out, op, bits);
             case 2 -> BitPacker16x.compressStrictlySorted(initial, in, ip, out, op, bits);
+            case 3 -> BitPacker16x.compressStrictlySorted(in, ip, out, op, bits);
+            case 4 -> BitPacker16x.compressSorted(in, ip, out, op, bits);
             default -> throw new AssertionError();
         };
     }
@@ -205,6 +203,8 @@ class BitPacker16xTest {
             case 0 -> BitPacker16x.decompress(in, ip, out, op, bits);
             case 1 -> BitPacker16x.decompressSorted(initial, in, ip, out, op, bits);
             case 2 -> BitPacker16x.decompressStrictlySorted(initial, in, ip, out, op, bits);
+            case 3 -> BitPacker16x.decompressStrictlySorted(in, ip, out, op, bits);
+            case 4 -> BitPacker16x.decompressSorted(in, ip, out, op, bits);
             default -> throw new AssertionError();
         };
     }

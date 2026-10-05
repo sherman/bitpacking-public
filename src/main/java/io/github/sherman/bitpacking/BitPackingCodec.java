@@ -1,10 +1,11 @@
 package io.github.sherman.bitpacking;
 
 /**
- * Configurable handle for the sixteen-stream codec.
+ * Instance facade for the stateless codec API.
  *
- * <p>Operations have the same validation, byte format, and allocation behavior as
- * {@link BitPacker16x}. Widths and delta initial values remain external metadata.
+ * <p>Every operation delegates to {@link BitPacker16x}, which defines validation,
+ * byte format, return values, and delta initial values. Both APIs provide the
+ * same operations and convenience overloads.
  */
 public enum BitPackingCodec {
     /**
@@ -12,97 +13,137 @@ public enum BitPackingCodec {
      */
     BITPACKER16X;
 
-    public static final int BLOCK_LEN = CodecSupport.BLOCK_LEN;
-    public static final int MAX_COMPRESSED_BYTES = CodecSupport.MAX_COMPRESSED_BYTES;
+    /** Number of integers in one block. */
+    public static final int BLOCK_LEN = BitPacker16x.BLOCK_LEN;
+
+    /** Maximum encoded size of one block, in bytes. */
+    public static final int MAX_COMPRESSED_BYTES = BitPacker16x.MAX_COMPRESSED_BYTES;
 
     /**
-     * Returns the encoded block length; rejects widths outside [0, 32].
+     * Returns the encoded block size in bytes; rejects widths outside [0, 32].
+     * @see BitPacker16x#compressedBlockSize(int)
      */
     public int compressedBlockSize(int bits) {
-        return CodecSupport.compressedBlockSize(bits);
+        return BitPacker16x.compressedBlockSize(bits);
     }
 
     /**
-     * Minimum width for unsigned values in one block, independent of layout.
+     * Returns the minimum width for unsigned values in one block.
+     * @see BitPacker16x#numBits(int[], int)
      */
     public int numBits(int[] input, int offset) {
-        return CodecSupport.numBits(input, offset, 0, 0);
+        return BitPacker16x.numBits(input, offset);
     }
 
     /**
-     * Minimum width for consecutive differences, starting at {@code initial}.
+     * Returns the minimum width for consecutive differences, starting at {@code initial}.
+     * @see BitPacker16x#numBitsSorted(int, int[], int)
      */
     public int numBitsSorted(int initial, int[] input, int offset) {
-        return CodecSupport.numBits(input, offset, 1, initial);
+        return BitPacker16x.numBitsSorted(initial, input, offset);
     }
 
     /**
-     * Minimum width for consecutive differences minus one.
+     * Returns the minimum delta width with an initial value of zero.
+     * @see BitPacker16x#numBitsSorted(int[], int)
+     */
+    public int numBitsSorted(int[] input, int offset) {
+        return BitPacker16x.numBitsSorted(input, offset);
+    }
+
+    /**
+     * Returns the minimum width for consecutive differences minus one, starting at {@code initial}.
+     * @see BitPacker16x#numBitsStrictlySorted(int, int[], int)
      */
     public int numBitsStrictlySorted(int initial, int[] input, int offset) {
-        return CodecSupport.numBits(input, offset, 2, initial);
+        return BitPacker16x.numBitsStrictlySorted(initial, input, offset);
     }
 
     /**
-     * Minimum strict-delta width with no preceding value.
+     * Returns the minimum strict-delta width with no preceding value.
+     * @see BitPacker16x#numBitsStrictlySorted(int[], int)
      */
     public int numBitsStrictlySorted(int[] input, int offset) {
-        return numBitsStrictlySorted(-1, input, offset);
+        return BitPacker16x.numBitsStrictlySorted(input, offset);
     }
 
     /**
      * Packs one block using this format; returns bytes written.
+     * @see BitPacker16x#compress(int[], int, byte[], int, int)
      */
     public int compress(int[] input, int inOffset, byte[] output, int outOffset, int bits) {
         return BitPacker16x.compress(input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Packs consecutive differences; {@code initial} must unsigned-compare <= the first value.
+     * Packs consecutive differences; returns bytes written.
+     * @see BitPacker16x#compressSorted(int, int[], int, byte[], int, int)
      */
     public int compressSorted(int initial, int[] input, int inOffset, byte[] output, int outOffset, int bits) {
         return BitPacker16x.compressSorted(initial, input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Packs differences minus one; {@code initial} must unsigned-compare < the first value.
+     * Packs consecutive differences with an initial value of zero; returns bytes written.
+     * @see BitPacker16x#compressSorted(int[], int, byte[], int, int)
+     */
+    public int compressSorted(int[] input, int inOffset, byte[] output, int outOffset, int bits) {
+        return BitPacker16x.compressSorted(input, inOffset, output, outOffset, bits);
+    }
+
+    /**
+     * Packs consecutive differences minus one; returns bytes written.
+     * @see BitPacker16x#compressStrictlySorted(int, int[], int, byte[], int, int)
      */
     public int compressStrictlySorted(int initial, int[] input, int inOffset, byte[] output, int outOffset, int bits) {
         return BitPacker16x.compressStrictlySorted(initial, input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Packs strict deltas with no preceding value, allowing a first value of zero.
+     * Packs strict deltas with no preceding value, allowing a first value of zero; returns bytes written.
+     * @see BitPacker16x#compressStrictlySorted(int[], int, byte[], int, int)
      */
     public int compressStrictlySorted(int[] input, int inOffset, byte[] output, int outOffset, int bits) {
-        return compressStrictlySorted(-1, input, inOffset, output, outOffset, bits);
+        return BitPacker16x.compressStrictlySorted(input, inOffset, output, outOffset, bits);
     }
 
     /**
      * Unpacks one block using this format; returns bytes consumed.
+     * @see BitPacker16x#decompress(byte[], int, int[], int, int)
      */
     public int decompress(byte[] input, int inOffset, int[] output, int outOffset, int bits) {
         return BitPacker16x.decompress(input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Unpacks deltas using the same initial value used for compression.
+     * Unpacks deltas using the compression initial value; returns bytes consumed.
+     * @see BitPacker16x#decompressSorted(int, byte[], int, int[], int, int)
      */
     public int decompressSorted(int initial, byte[] input, int inOffset, int[] output, int outOffset, int bits) {
         return BitPacker16x.decompressSorted(initial, input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Unpacks deltas plus one using the compression initial value.
+     * Unpacks deltas with an initial value of zero; returns bytes consumed.
+     * @see BitPacker16x#decompressSorted(byte[], int, int[], int, int)
+     */
+    public int decompressSorted(byte[] input, int inOffset, int[] output, int outOffset, int bits) {
+        return BitPacker16x.decompressSorted(input, inOffset, output, outOffset, bits);
+    }
+
+    /**
+     * Unpacks deltas plus one using the compression initial value; returns bytes consumed.
+     * @see BitPacker16x#decompressStrictlySorted(int, byte[], int, int[], int, int)
      */
     public int decompressStrictlySorted(int initial, byte[] input, int inOffset, int[] output, int outOffset, int bits) {
         return BitPacker16x.decompressStrictlySorted(initial, input, inOffset, output, outOffset, bits);
     }
 
     /**
-     * Unpacks strict deltas with no preceding value.
+     * Unpacks strict deltas with no preceding value; returns bytes consumed.
+     * @see BitPacker16x#decompressStrictlySorted(byte[], int, int[], int, int)
      */
     public int decompressStrictlySorted(byte[] input, int inOffset, int[] output, int outOffset, int bits) {
-        return decompressStrictlySorted(-1, input, inOffset, output, outOffset, bits);
+        return BitPacker16x.decompressStrictlySorted(input, inOffset, output, outOffset, bits);
     }
 }
