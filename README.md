@@ -4,7 +4,7 @@ BitPacking Java provides a static API to compress blocks of 128 unsigned 32-bit
 integers. It uses a sixteen-stream format with bit widths from 1 to 32. Each
 block takes `16 * bits` bytes.
 
-You need Java 25 and `--add-modules=jdk.incubator.vector` to run it.
+Use JDK 25 and launch your application with `--add-modules=jdk.incubator.vector`.
 
 ```java
 int bits = BitPacker16x.numBits(values, 0);
@@ -20,28 +20,6 @@ Offsets count elements in the corresponding array. Compression returns the
 number of bytes written, and decompression returns the number of bytes read.
 Store the bit width and any initial value separately.
 
-## Structure
-
-| Class | Responsibility |
-|---|---|
-| `BitPacker16x` | Public API, argument validation, and backend selection |
-| `ScalarKernels` | Scalar width detection, packing, and unpacking |
-| `Vector512Kernels` | The same operations using generated 512-bit SIMD kernels |
-
-Both backends have `numBits`, `pack`, and `unpack` methods. The scalar backend
-uses the same packing and unpacking loops for every width, including 32. The
-vector backend has a kernel for each width. The public API checks the bit width
-and input/output ranges before writing to either array.
-
-| JVM configuration | Backend for every operation |
-|---|---|
-| Preferred vector size at least 512 bits | `Vector512Kernels` |
-| Preferred vector size below 512 bits | `ScalarKernels` |
-| `-Dbitpacking.scalar=true` | `ScalarKernels` |
-
-`BitPacker16x` selects a backend once, when the class is initialized. Both
-backends produce identical bytes.
-
 ## Operation families
 
 | Methods | Input | Encoded value | Convenience initial value |
@@ -51,20 +29,23 @@ backends produce identical bytes.
 | `*StrictlySorted` | Unsigned strictly increasing values | `value - previous - 1` | `-1` (no preceding value) |
 
 When chaining sorted blocks, pass the last value of the previous block as the
-initial value. Arithmetic wraps modulo 2^32. Make sure the values or deltas fit
-the supplied width and the input is in the required order. Compression does
-not check these conditions.
+initial value for width detection, compression, and decompression. Arithmetic
+wraps modulo 2^32. The API checks the width and buffer ranges before writing.
+The caller must ensure the values or deltas fit that width and the input is in
+the required order.
 
 `numBits*` always returns at least `1`, so a block of zeros takes 16 bytes.
-The same applies to constant sorted values with a matching initial value and
-consecutive strictly sorted values: each uses one bit per value. Passing width
-`0` throws `IllegalArgumentException`.
+Constant sorted values also take 16 bytes when the initial value equals the
+first value. Consecutive strictly sorted values take 16 bytes when the initial
+value immediately precedes the first. Passing width `0` throws
+`IllegalArgumentException`.
 
-## Compatibility
+## Backend selection
 
-The static method signatures and byte format for widths 1 to 32 are unchanged.
-Replace `BitPackingCodec.BITPACKER16X.method(...)` calls with
-`BitPacker16x.method(...)`. The enum facade has been removed.
+`BitPacker16x` selects its backend at class initialization. It uses 512-bit
+vector kernels when the JVM's preferred integer vector size is at least 512
+bits and scalar kernels otherwise. Set `-Dbitpacking.scalar=true` at startup
+to force the scalar backend. Both backends produce identical bytes.
 
 ## Build and test
 
