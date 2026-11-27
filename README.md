@@ -63,21 +63,24 @@ Hardware: AMD Ryzen 9 9900X3D (12 cores / 24 threads, AVX-512,
 Results below measure the vector kernels with one 128-integer block,
 averaged equally across widths 1, 3, 8, 13, 16, 24, and 31.
 Positive random inputs are regenerated before each iteration, outside timing;
-buffers are reused. Throughput is `128 × 10⁹ / average ns/op`.
+buffers are reused. Each configuration runs in 10 forks; forks more than 10%
+slower than that configuration's median fork are dropped before averaging,
+because single-block results vary by up to 2× between forks.
+Throughput is `128 × 10⁹ / average ns/op`.
 
 ### Plain mode
 
 | Operation | Average ns/op | Billion integers/s |
 |---|---:|---:|
-| Compress | 5.251474 | 24.374108 |
-| Decompress | 4.586427 | 27.908435 |
+| Compress | 5.128298 | 24.959549 |
+| Decompress | 4.115790 | 31.099739 |
 
 ### Sorted mode (deltas)
 
 | Operation | Average ns/op | Billion integers/s |
 |---|---:|---:|
-| Compress | 5.754198 | 22.244628 |
-| Decompress | 9.886175 | 12.947374 |
+| Compress | 5.559481 | 23.023732 |
+| Decompress | 9.379898 | 13.646203 |
 
 All suites call kernels directly with range checks and support `detect`,
 `compress`, `decompress`, and `detectAndCompress`.
