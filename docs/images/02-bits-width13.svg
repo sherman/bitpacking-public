@@ -1,0 +1,48 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='892' height='300' viewBox='0 0 892 300'>
+<defs></defs>
+<rect width='892' height='300' fill='#ffffff'/>
+<text x='30' y='24' font-size='13' fill='#191919' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>One stream at width 13: 8 values × 13 bits = 104 bits, written low bit first</text>
+<text x='30' y='44' font-size='11' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>bit 0 →</text>
+<text x='862' y='44' font-size='11' fill='#666666' text-anchor='end' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>← bit 103</text>
+<rect x='30' y='70' width='104' height='34' rx='0' fill='#b3d2f4' stroke='#257de0' stroke-width='1'/>
+<text x='82.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v0</text>
+<rect x='134' y='70' width='104' height='34' rx='0' fill='#fbceb7' stroke='#f47230' stroke-width='1'/>
+<text x='186.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v1</text>
+<rect x='238' y='70' width='104' height='34' rx='0' fill='#a6e6da' stroke='#00b894' stroke-width='1'/>
+<text x='314.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v2</text>
+<rect x='342' y='70' width='104' height='34' rx='0' fill='#fae0a6' stroke='#f2a600' stroke-width='1'/>
+<text x='394.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v3</text>
+<rect x='446' y='70' width='104' height='34' rx='0' fill='#f9d2e2' stroke='#ee7fac' stroke-width='1'/>
+<text x='494.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v4</text>
+<rect x='550' y='70' width='104' height='34' rx='0' fill='#a6d6ae' stroke='#008a17' stroke-width='1'/>
+<text x='602.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v5</text>
+<rect x='654' y='70' width='104' height='34' rx='0' fill='#cbc0f5' stroke='#6a4ce2' stroke-width='1'/>
+<text x='706.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v6</text>
+<rect x='758' y='70' width='104' height='34' rx='0' fill='#f8bebf' stroke='#ec4647' stroke-width='1'/>
+<text x='830.0' y='92' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>v7</text>
+<line x1='30' y1='62' x2='30' y2='130' stroke='#191919' stroke-width='2'/>
+<path d='M32,122 L32,128 L284,128 L284,122' stroke='#191919' stroke-width='1' fill='none'/>
+<text x='158.0' y='150' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w0</text>
+<text x='158.0' y='168' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>32 bits · bytes 0–63</text>
+<text x='158.0' y='190' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>w0 = v0 | v1&lt;&lt;13 | v2&lt;&lt;26</text>
+<line x1='286' y1='62' x2='286' y2='130' stroke='#191919' stroke-width='2'/>
+<path d='M288,122 L288,128 L540,128 L540,122' stroke='#191919' stroke-width='1' fill='none'/>
+<text x='414.0' y='150' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w1</text>
+<text x='414.0' y='168' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>32 bits · bytes 64–127</text>
+<text x='414.0' y='190' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>w1 = v2&gt;&gt;&gt;6 | v3&lt;&lt;7 | v4&lt;&lt;20</text>
+<line x1='542' y1='62' x2='542' y2='130' stroke='#191919' stroke-width='2'/>
+<path d='M544,122 L544,128 L796,128 L796,122' stroke='#191919' stroke-width='1' fill='none'/>
+<text x='670.0' y='150' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w2</text>
+<text x='670.0' y='168' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>32 bits · bytes 128–191</text>
+<text x='670.0' y='190' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>w2 = v4&gt;&gt;&gt;12 | v5&lt;&lt;1 | v6&lt;&lt;14 | v7&lt;&lt;27</text>
+<line x1='798' y1='62' x2='798' y2='130' stroke='#191919' stroke-width='2'/>
+<path d='M800,122 L800,128 L860,128 L860,122' stroke='#191919' stroke-width='1' fill='none'/>
+<text x='830.0' y='150' font-size='13' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>tail</text>
+<line x1='862' y1='62' x2='862' y2='130' stroke='#191919' stroke-width='2'/>
+<text x='830' y='168' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>8 bits · 1 byte</text>
+<text x='830' y='182' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>bytes 192–207</text>
+<text x='810' y='204' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>tail = v7&gt;&gt;&gt;5</text>
+<text x='30' y='250' font-size='12' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Pack: each output word is an OR of shifted fields; a field that crosses a word boundary (v2, v4, v7)</text>
+<text x='30' y='268' font-size='12' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>is split: its low part goes in one word, the rest (&gt;&gt;&gt;) starts the next. Unpack reverses it: shift right, OR the</text>
+<text x='30' y='286' font-size='12' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>high part from the next word, mask with 0x1FFF.  All 16 streams do this at once, one per 32-bit lane.</text>
+</svg>

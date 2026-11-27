@@ -1,0 +1,114 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='840' height='330' viewBox='0 0 840 330'>
+<defs><marker id='a257de0' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto'><path d='M0,1 L9,5 L0,9 z' fill='#257de0'/></marker><marker id='a9c9c9c' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto'><path d='M0,1 L9,5 L0,9 z' fill='#9c9c9c'/></marker></defs>
+<rect width='840' height='330' fill='#ffffff'/>
+<text x='20' y='24' font-size='13' fill='#191919' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Sorted pack: delta = current − (the value just before it in input order)</text>
+<text x='138' y='67.0' font-size='11' fill='#666666' text-anchor='end' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>previous vector</text>
+<rect x='150' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='170.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p0</text>
+<rect x='190' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='210.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p1</text>
+<rect x='230' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='250.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p2</text>
+<rect x='270' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='290.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p3</text>
+<rect x='310' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='330.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p4</text>
+<rect x='350' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='370.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p5</text>
+<rect x='390' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='410.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p6</text>
+<rect x='430' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='450.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p7</text>
+<rect x='470' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='490.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p8</text>
+<rect x='510' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='530.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p9</text>
+<rect x='550' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='570.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p10</text>
+<rect x='590' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='610.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p11</text>
+<rect x='630' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='650.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p12</text>
+<rect x='670' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='690.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p13</text>
+<rect x='710' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='730.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p14</text>
+<rect x='750' y='50' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='770.0' y='67.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p15</text>
+<text x='138' y='137.0' font-size='11' fill='#666666' text-anchor='end' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>current vector</text>
+<rect x='150' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='170.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c0</text>
+<rect x='190' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='210.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c1</text>
+<rect x='230' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='250.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c2</text>
+<rect x='270' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='290.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c3</text>
+<rect x='310' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='330.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c4</text>
+<rect x='350' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='370.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c5</text>
+<rect x='390' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='410.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c6</text>
+<rect x='430' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='450.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c7</text>
+<rect x='470' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='490.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c8</text>
+<rect x='510' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='530.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c9</text>
+<rect x='550' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='570.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c10</text>
+<rect x='590' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='610.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c11</text>
+<rect x='630' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='650.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c12</text>
+<rect x='670' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='690.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c13</text>
+<rect x='710' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='730.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c14</text>
+<rect x='750' y='120' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='770.0' y='137.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c15</text>
+<text x='138' y='217.0' font-size='11' fill='#666666' text-anchor='end' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>selectFrom(prev, cur)</text>
+<rect x='150' y='200' width='40' height='26' rx='0' fill='#e6e6e6' stroke='#d9d9d9' stroke-width='1'/>
+<text x='170.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>p15</text>
+<rect x='190' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='210.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c0</text>
+<rect x='230' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='250.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c1</text>
+<rect x='270' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='290.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c2</text>
+<rect x='310' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='330.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c3</text>
+<rect x='350' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='370.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c4</text>
+<rect x='390' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='410.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c5</text>
+<rect x='430' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='450.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c6</text>
+<rect x='470' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='490.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c7</text>
+<rect x='510' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='530.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c8</text>
+<rect x='550' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='570.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c9</text>
+<rect x='590' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='610.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c10</text>
+<rect x='630' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='650.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c11</text>
+<rect x='670' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='690.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c12</text>
+<rect x='710' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='730.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c13</text>
+<rect x='750' y='200' width='40' height='26' rx='0' fill='#d8e8f9' stroke='#d9d9d9' stroke-width='1'/>
+<text x='770.0' y='217.0' font-size='11' fill='#191919' text-anchor='middle' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>c14</text>
+<path d='M790,63.0 L808,63.0 L808,178 L170.0,178 L170.0,198' stroke='#9c9c9c' stroke-width='1.5' fill='none' marker-end='url(#a9c9c9c)'/>
+<line x1='170.0' y1='146' x2='206.0' y2='198' stroke='#257de0' stroke-width='1' marker-end='url(#a257de0)'/>
+<line x1='210.0' y1='146' x2='246.0' y2='198' stroke='#257de0' stroke-width='1' marker-end='url(#a257de0)'/>
+<line x1='450.0' y1='146' x2='486.0' y2='198' stroke='#257de0' stroke-width='1' marker-end='url(#a257de0)'/>
+<line x1='690.0' y1='146' x2='726.0' y2='198' stroke='#257de0' stroke-width='1' marker-end='url(#a257de0)'/>
+<line x1='730.0' y1='146' x2='766.0' y2='198' stroke='#257de0' stroke-width='1' marker-end='url(#a257de0)'/>
+<text x='150' y='258' font-size='12' fill='#191919' text-anchor='start' font-weight='normal' font-family='ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'>delta = cur − selectFrom(prev, cur)       index vector = [15, 16, 17, … 30]</text>
+<text x='150' y='280' font-size='12' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Before: previous.rearrange(PREVIOUS, current)  →  compare + 2 permutes + blend</text>
+<text x='150' y='300' font-size='12' fill='#257de0' text-anchor='start' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>After:  PREVIOUS_INDEX.selectFrom(previous, current)  →  one vpermi2d</text>
+<text x='150' y='320' font-size='12' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>For the first vector, prev = broadcast(initial). Strict mode subtracts 1 more.</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='900' height='500' viewBox='0 0 900 500'>
+<defs><marker id='a666666' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto'><path d='M0,1 L9,5 L0,9 z' fill='#666666'/></marker></defs>
+<rect width='900' height='500' fill='#ffffff'/>
+<text x='20' y='26' font-size='14' fill='#191919' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Load a 1-byte tail into 16 int lanes (2-byte tail: same shape with 16-bit elements)</text>
+<text x='20' y='52' font-size='13' fill='#9c9c9c' text-anchor='start' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Before</text>
+<rect x='20' y='64' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='135.0' y='87.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>masked 64-byte load</text>
+<text x='135.0' y='103.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>mask = first 16 bytes</text>
+<line x1='254' y1='91.0' x2='294' y2='91.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='298' y='64' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='413.0' y='87.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>vpermb, zeroing mask</text>
+<text x='413.0' y='103.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>byte j → byte 4j of lane j</text>
+<line x1='532' y1='91.0' x2='572' y2='91.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='576' y='64' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='691.0' y='87.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w: 16 × int</text>
+<text x='691.0' y='103.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>[t0 0 0 0][t1 0 0 0]…</text>
+<text x='20' y='136' font-size='11' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>When the block is the last thing in the array, the 64-byte window runs past its end: the masked load falls back to a slow path.</text>
+<text x='20' y='164' font-size='13' fill='#257de0' text-anchor='start' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>After</text>
+<rect x='20' y='176' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='135.0' y='199.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>16-byte load</text>
+<text x='135.0' y='215.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>exactly the tail bytes</text>
+<line x1='254' y1='203.0' x2='294' y2='203.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='298' y='176' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='413.0' y='199.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>vpmovzxbd</text>
+<text x='413.0' y='215.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>zero-extend 16 × u8 → 16 × u32</text>
+<line x1='532' y1='203.0' x2='572' y2='203.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='576' y='176' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='691.0' y='199.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w: 16 × int</text>
+<text x='691.0' y='215.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>[t0 0 0 0][t1 0 0 0]…</text>
+<text x='20' y='248' font-size='11' fill='#666666' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Never touches bytes outside the block, no mask, one permute fewer. 2-byte tail: 32-byte load + vpmovzxwd.</text>
+<line x1='20' y1='268' x2='880' y2='268' stroke='#d9d9d9' stroke-width='1'/>
+<text x='20' y='300' font-size='14' fill='#191919' text-anchor='start' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Store 16 int lanes as a 1-byte tail</text>
+<text x='20' y='326' font-size='13' fill='#9c9c9c' text-anchor='start' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>Before</text>
+<rect x='20' y='338' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='135.0' y='361.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w: 16 × int</text>
+<text x='135.0' y='377.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>low byte of each lane</text>
+<line x1='254' y1='365.0' x2='294' y2='365.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='298' y='338' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='413.0' y='361.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>vpermb compact</text>
+<text x='413.0' y='377.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>byte 4j → byte j</text>
+<line x1='532' y1='365.0' x2='572' y2='365.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='576' y='338' width='230' height='54' rx='6' fill='#f3f3f3' stroke='#9c9c9c' stroke-width='1'/>
+<text x='691.0' y='361.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>masked 64-byte store</text>
+<text x='691.0' y='377.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>16 bytes enabled</text>
+<text x='20' y='408' font-size='13' fill='#257de0' text-anchor='start' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>After</text>
+<rect x='20' y='420' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='135.0' y='443.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>w: 16 × int</text>
+<text x='135.0' y='459.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>low byte of each lane</text>
+<line x1='254' y1='447.0' x2='294' y2='447.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='298' y='420' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='413.0' y='443.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>vpmovdb</text>
+<text x='413.0' y='459.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>truncate 16 × u32 → 16 × u8</text>
+<line x1='532' y1='447.0' x2='572' y2='447.0' stroke='#666666' stroke-width='1' marker-end='url(#a666666)'/>
+<rect x='576' y='420' width='230' height='54' rx='6' fill='#e5effb' stroke='#257de0' stroke-width='1'/>
+<text x='691.0' y='443.2' font-size='12' fill='#191919' text-anchor='middle' font-weight='bold' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>16-byte store</text>
+<text x='691.0' y='459.2' font-size='11' fill='#666666' text-anchor='middle' font-weight='normal' font-family='ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif'>2-byte tail: vpmovdw + 32 bytes</text>
+</svg>

@@ -69,15 +69,15 @@ buffers are reused. Throughput is `128 × 10⁹ / average ns/op`.
 
 | Operation | Average ns/op | Billion integers/s |
 |---|---:|---:|
-| Compress | 4.982857 | 25.688073 |
-| Decompress | 4.290429 | 29.833849 |
+| Compress | 5.251474 | 24.374108 |
+| Decompress | 4.586427 | 27.908435 |
 
 ### Sorted mode (deltas)
 
 | Operation | Average ns/op | Billion integers/s |
 |---|---:|---:|
-| Compress | 5.909571 | 21.659777 |
-| Decompress | 14.742857 | 8.682171 |
+| Compress | 5.754198 | 22.244628 |
+| Decompress | 9.886175 | 12.947374 |
 
 All suites call kernels directly with range checks and support `detect`,
 `compress`, `decompress`, and `detectAndCompress`.
@@ -99,5 +99,5 @@ Build with `mvn -Pbenchmarks verify`, then run:
 JAR=target/bitpacking-java-0.1.0-SNAPSHOT-benchmarks.jar
 java --add-modules=jdk.incubator.vector -jar "$JAR" \
   'VectorCodecBenchmark.(compress|decompress)$' \
-  -p bits=1,3,8,13,16,24,31 -p mode=0,1 -p blocks=1 -f 2
+  -p bits=1,3,8,13,16,24,31 -p mode=0,1 -p blocks=1 -f 10
 ```
