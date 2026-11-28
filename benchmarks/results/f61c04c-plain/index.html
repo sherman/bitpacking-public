@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plain bitpacking · Commit f61c04c</title><style>
+:root{color-scheme:dark;font:16px/1.5 Inter,system-ui,sans-serif;background:#111312;color:#edf1ee}
+body{max-width:1050px;margin:36px auto;padding:0 20px}h1{line-height:1.15}h2{font-size:1.25rem;margin:28px 0 8px}
+p{max-width:85ch}a{color:#a1d7c6}.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;background:#202321}
+th,td{text-align:right;padding:8px 12px;border-bottom:1px solid #424943;white-space:nowrap;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}th{font-size:.85rem;color:#d1d8d2}.improved{color:#77d6a9}.regressed{color:#ffac9f}.inconclusive{color:#efd097}
+code{color:#d4dfd7}footer{margin:26px 0;color:#c1cbc4}</style><main>
+<h1>Plain bitpacking performance</h1>
+<p><code>476bd9f4</code> → <code>f61c04c2</code> · 512-bit vector kernels · CPU 2 · Performance governor</p>
+<p>Each operation processes 16 codec blocks of 128 integers. Times below are geometric means in nanoseconds per codec block. Negative changes mean faster. Each width opens a report card with its confidence interval, counters, allocations and calibrated sensitivity.</p>
+<h2>Plain encode</h2><div class="scroll"><table><thead><tr><th>Bits</th><th>Parent ns/block</th><th>Commit ns/block</th><th>Time change</th><th>95% CI</th><th>p</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><a href="cards/encode-1.html">1 bits</a></td><td>4.245</td><td>3.751</td><td>−11.64%</td><td>−17.02% to −5.90%</td><td>0.002441</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/encode-3.html">3 bits</a></td><td>4.453</td><td>4.443</td><td>−0.22%</td><td>−5.90% to +5.78%</td><td>0.9033</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+<tr><td><a href="cards/encode-8.html">8 bits</a></td><td>4.807</td><td>4.777</td><td>−0.62%</td><td>−3.37% to +2.28%</td><td>0.6421</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+<tr><td><a href="cards/encode-13.html">13 bits</a></td><td>5.718</td><td>5.119</td><td>−10.47%</td><td>−12.93% to −7.85%</td><td>0.0004883</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/encode-16.html">16 bits</a></td><td>4.541</td><td>5.029</td><td>+10.74%</td><td>+6.56% to +15.05%</td><td>0.0009766</td><td class="regressed">REGRESSED</td></tr>
+<tr><td><a href="cards/encode-25.html">25 bits</a></td><td>6.067</td><td>5.261</td><td>−13.29%</td><td>−16.30% to −10.25%</td><td>0.0004883</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/encode-31.html">31 bits</a></td><td>6.028</td><td>5.880</td><td>−2.45%</td><td>−5.84% to +0.96%</td><td>0.144</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+</tbody></table></div>
+<h2>Plain decode</h2><div class="scroll"><table><thead><tr><th>Bits</th><th>Parent ns/block</th><th>Commit ns/block</th><th>Time change</th><th>95% CI</th><th>p</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><a href="cards/decode-1.html">1 bits</a></td><td>4.045</td><td>3.349</td><td>−17.21%</td><td>−20.79% to −13.58%</td><td>0.0004883</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/decode-3.html">3 bits</a></td><td>3.882</td><td>3.845</td><td>−0.96%</td><td>−5.24% to +3.53%</td><td>0.6323</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+<tr><td><a href="cards/decode-8.html">8 bits</a></td><td>3.419</td><td>3.531</td><td>+3.27%</td><td>−0.17% to +6.79%</td><td>0.0625</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+<tr><td><a href="cards/decode-13.html">13 bits</a></td><td>5.212</td><td>4.324</td><td>−17.04%</td><td>−19.41% to −14.63%</td><td>0.0004883</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/decode-16.html">16 bits</a></td><td>3.929</td><td>3.984</td><td>+1.41%</td><td>−1.17% to +4.04%</td><td>0.2559</td><td class="inconclusive">INCONCLUSIVE</td></tr>
+<tr><td><a href="cards/decode-25.html">25 bits</a></td><td>5.910</td><td>5.023</td><td>−15.01%</td><td>−17.31% to −12.46%</td><td>0.0004883</td><td class="improved">IMPROVED</td></tr>
+<tr><td><a href="cards/decode-31.html">31 bits</a></td><td>6.205</td><td>6.010</td><td>−3.13%</td><td>−5.51% to −0.72%</td><td>0.01367</td><td class="improved">IMPROVED</td></tr>
+</tbody></table></div>
+<h2>What did the extra forks buy?</h2><p>The full run used 672 timing forks, 448 separate A/A calibration forks and 224 profiler forks. This retrospective check reuses only the first 6, 8 or 12 timing blocks of each case. The published verdicts use the prespecified 12-block endpoint.</p><div class="scroll"><table><thead><tr><th>Timing blocks per case</th><th>Total timing forks</th><th>Improved</th><th>Regressed</th><th>Inconclusive</th></tr></thead><tbody>
+<tr><td>6</td><td>336</td><td>5</td><td>0</td><td>9</td></tr>
+<tr><td>8</td><td>448</td><td>6</td><td>1</td><td>7</td></tr>
+<tr><td>12</td><td>672</td><td>7</td><td>1</td><td>6</td></tr>
+</tbody></table></div>
+<h2>Measurement protocol</h2><p>Single-threaded JMH 1.37 on Oracle JDK 25.0.1.
+Each fresh JVM runs two 500 ms warmups and three 250 ms measurements. Each randomized ABBA or BAAB block contains four JVMs.
+Every case has eight parent-versus-parent calibration blocks, twelve unprofiled parent-versus-commit timing blocks and four separately profiled blocks.
+The timing verdict uses one prespecified two-sided test per case. Confidence intervals are per case.
+All completed forks are included. The governor is checked before, during and after each fork.</p>
+<p>Calibration estimates the slowdown detectable with 80% power at twelve timing blocks. Profiled cycle and instruction changes use paired log ratios.
+Allocation is the candidate-minus-parent difference in Java heap bytes per 16-block JMH operation. These counters are diagnostic.</p>
+<p>The commit changes the width-specific plain pack or unpack bodies at 1, 13 and 25 bits in this set. The corresponding bodies at
+3, 8, 16 and 31 bits match between revisions. The measurements compare the two compiled JARs, including their JIT and code layout.</p>
+<footer><a href="13-bit-trace.md">Step-by-step 13-bit execution log</a> · <a href="data/analysis.json">Analysis</a> ·
+<a href="data/plan.json">Plan and build hashes</a> · <a href="data/calibration.json">Frozen A/A estimates</a> ·
+<a href="data/forks.jsonl">Raw JMH forks</a> · <a href="data/console.txt.gz">JMH console output</a></footer></main></html>

@@ -1,0 +1,2730 @@
+{
+  "started": "2026-11-28T16:47:58.075793+00:00",
+  "seed": 2611281947,
+  "cpu": 2,
+  "policy": {
+    "scaling_driver": "amd-pstate-epp",
+    "scaling_governor": "performance",
+    "energy_performance_preference": "performance",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "5573000"
+  },
+  "power_profile": "performance",
+  "kernel": "6.8.0-138-generic",
+  "cpu_model": "AMD Ryzen 9 9900X3D 12-Core Processor",
+  "smt_siblings": "2,14",
+  "java": "/home/sherman/.sdkman/candidates/java/25.0.1-oracle/bin/java",
+  "java_version": "java version \"25.0.1\" 2025-10-21 LTS\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)\n",
+  "builds": {
+    "A": {
+      "revision": "476bd9f401116d85083ca93178c5f364640046b8",
+      "jar": "builds/baseline.jar",
+      "sha256": "b3507c4f5c5ee1ee7a5eb3635bd2fd47fdf04ec7a5678b781ba75df0a154fdd8",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "136a09c534928097755d7e5d01de8e99229845bda4c17ad73a80e8aeeaa663e6"
+    },
+    "B": {
+      "revision": "f61c04c2141fe70571af97a8ae3dedebe7d924a1",
+      "jar": "builds/candidate.jar",
+      "sha256": "1f40cef38603cdb18c095e8ff499b810cbadd6419157a6750c450ee7dc401ef5",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "0ea426dd13eea0577a0ce670660604e31a47309fd6bbfe0102ced0a60e9afa34"
+    }
+  },
+  "codec_blocks_per_op": 16,
+  "integers_per_block": 128,
+  "warmup": "2 x 500 ms",
+  "measurement": "3 x 250 ms",
+  "alpha": 0.05,
+  "mde_power": 0.8,
+  "plan": [
+    {
+      "sequence": 1,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 2,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 3,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 4,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 5,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 6,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 7,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 8,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 9,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 10,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 11,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 12,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 13,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 14,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 15,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 16,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 17,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 18,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 19,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 20,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 21,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 22,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 23,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 24,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 25,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 26,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 27,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 28,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 29,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 30,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 31,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 32,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 33,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 34,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 35,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 36,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 37,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 38,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 39,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 40,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 41,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 42,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 43,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 44,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 45,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 46,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 47,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 48,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 49,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 50,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 51,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 52,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 53,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 54,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 55,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 56,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 57,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 58,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 59,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 60,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 61,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 62,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 63,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 64,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 65,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 66,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 67,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 68,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 69,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 70,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 71,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 72,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 73,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 74,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 75,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 76,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 77,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 78,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 79,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 80,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 81,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 82,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 83,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 84,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 85,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 86,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 87,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 88,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 89,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 90,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 91,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 92,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 93,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 94,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 95,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 96,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 97,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 98,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 99,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 100,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 101,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 102,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 103,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 104,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 105,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 106,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 107,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 108,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 109,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 110,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 111,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 112,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 113,
+      "stage": "timing",
+      "block": 1,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 114,
+      "stage": "timing",
+      "block": 1,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 115,
+      "stage": "timing",
+      "block": 1,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 116,
+      "stage": "timing",
+      "block": 1,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 117,
+      "stage": "timing",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 118,
+      "stage": "timing",
+      "block": 1,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 119,
+      "stage": "timing",
+      "block": 1,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 120,
+      "stage": "timing",
+      "block": 1,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 121,
+      "stage": "timing",
+      "block": 1,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 122,
+      "stage": "timing",
+      "block": 1,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 123,
+      "stage": "timing",
+      "block": 1,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 124,
+      "stage": "timing",
+      "block": 1,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 125,
+      "stage": "timing",
+      "block": 1,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 126,
+      "stage": "timing",
+      "block": 1,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 127,
+      "stage": "timing",
+      "block": 2,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 128,
+      "stage": "timing",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 129,
+      "stage": "timing",
+      "block": 2,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 130,
+      "stage": "timing",
+      "block": 2,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 131,
+      "stage": "timing",
+      "block": 2,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 132,
+      "stage": "timing",
+      "block": 2,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 133,
+      "stage": "timing",
+      "block": 2,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 134,
+      "stage": "timing",
+      "block": 2,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 135,
+      "stage": "timing",
+      "block": 2,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 136,
+      "stage": "timing",
+      "block": 2,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 137,
+      "stage": "timing",
+      "block": 2,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 138,
+      "stage": "timing",
+      "block": 2,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 139,
+      "stage": "timing",
+      "block": 2,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 140,
+      "stage": "timing",
+      "block": 2,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 141,
+      "stage": "timing",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 142,
+      "stage": "timing",
+      "block": 3,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 143,
+      "stage": "timing",
+      "block": 3,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 144,
+      "stage": "timing",
+      "block": 3,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 145,
+      "stage": "timing",
+      "block": 3,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 146,
+      "stage": "timing",
+      "block": 3,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 147,
+      "stage": "timing",
+      "block": 3,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 148,
+      "stage": "timing",
+      "block": 3,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 149,
+      "stage": "timing",
+      "block": 3,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 150,
+      "stage": "timing",
+      "block": 3,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 151,
+      "stage": "timing",
+      "block": 3,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 152,
+      "stage": "timing",
+      "block": 3,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 153,
+      "stage": "timing",
+      "block": 3,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 154,
+      "stage": "timing",
+      "block": 3,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 155,
+      "stage": "timing",
+      "block": 4,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 156,
+      "stage": "timing",
+      "block": 4,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 157,
+      "stage": "timing",
+      "block": 4,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 158,
+      "stage": "timing",
+      "block": 4,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 159,
+      "stage": "timing",
+      "block": 4,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 160,
+      "stage": "timing",
+      "block": 4,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 161,
+      "stage": "timing",
+      "block": 4,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 162,
+      "stage": "timing",
+      "block": 4,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 163,
+      "stage": "timing",
+      "block": 4,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 164,
+      "stage": "timing",
+      "block": 4,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 165,
+      "stage": "timing",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 166,
+      "stage": "timing",
+      "block": 4,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 167,
+      "stage": "timing",
+      "block": 4,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 168,
+      "stage": "timing",
+      "block": 4,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 169,
+      "stage": "timing",
+      "block": 5,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 170,
+      "stage": "timing",
+      "block": 5,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 171,
+      "stage": "timing",
+      "block": 5,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 172,
+      "stage": "timing",
+      "block": 5,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 173,
+      "stage": "timing",
+      "block": 5,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 174,
+      "stage": "timing",
+      "block": 5,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 175,
+      "stage": "timing",
+      "block": 5,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 176,
+      "stage": "timing",
+      "block": 5,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 177,
+      "stage": "timing",
+      "block": 5,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 178,
+      "stage": "timing",
+      "block": 5,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 179,
+      "stage": "timing",
+      "block": 5,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 180,
+      "stage": "timing",
+      "block": 5,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 181,
+      "stage": "timing",
+      "block": 5,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 182,
+      "stage": "timing",
+      "block": 5,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 183,
+      "stage": "timing",
+      "block": 6,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 184,
+      "stage": "timing",
+      "block": 6,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 185,
+      "stage": "timing",
+      "block": 6,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 186,
+      "stage": "timing",
+      "block": 6,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 187,
+      "stage": "timing",
+      "block": 6,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 188,
+      "stage": "timing",
+      "block": 6,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 189,
+      "stage": "timing",
+      "block": 6,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 190,
+      "stage": "timing",
+      "block": 6,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 191,
+      "stage": "timing",
+      "block": 6,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 192,
+      "stage": "timing",
+      "block": 6,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 193,
+      "stage": "timing",
+      "block": 6,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 194,
+      "stage": "timing",
+      "block": 6,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 195,
+      "stage": "timing",
+      "block": 6,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 196,
+      "stage": "timing",
+      "block": 6,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 197,
+      "stage": "timing",
+      "block": 7,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 198,
+      "stage": "timing",
+      "block": 7,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 199,
+      "stage": "timing",
+      "block": 7,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 200,
+      "stage": "timing",
+      "block": 7,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 201,
+      "stage": "timing",
+      "block": 7,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 202,
+      "stage": "timing",
+      "block": 7,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 203,
+      "stage": "timing",
+      "block": 7,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 204,
+      "stage": "timing",
+      "block": 7,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 205,
+      "stage": "timing",
+      "block": 7,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 206,
+      "stage": "timing",
+      "block": 7,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 207,
+      "stage": "timing",
+      "block": 7,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 208,
+      "stage": "timing",
+      "block": 7,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 209,
+      "stage": "timing",
+      "block": 7,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 210,
+      "stage": "timing",
+      "block": 7,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 211,
+      "stage": "timing",
+      "block": 8,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 212,
+      "stage": "timing",
+      "block": 8,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 213,
+      "stage": "timing",
+      "block": 8,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 214,
+      "stage": "timing",
+      "block": 8,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 215,
+      "stage": "timing",
+      "block": 8,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 216,
+      "stage": "timing",
+      "block": 8,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 217,
+      "stage": "timing",
+      "block": 8,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 218,
+      "stage": "timing",
+      "block": 8,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 219,
+      "stage": "timing",
+      "block": 8,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 220,
+      "stage": "timing",
+      "block": 8,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 221,
+      "stage": "timing",
+      "block": 8,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 222,
+      "stage": "timing",
+      "block": 8,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 223,
+      "stage": "timing",
+      "block": 8,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 224,
+      "stage": "timing",
+      "block": 8,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 225,
+      "stage": "timing",
+      "block": 9,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 226,
+      "stage": "timing",
+      "block": 9,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 227,
+      "stage": "timing",
+      "block": 9,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 228,
+      "stage": "timing",
+      "block": 9,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 229,
+      "stage": "timing",
+      "block": 9,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 230,
+      "stage": "timing",
+      "block": 9,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 231,
+      "stage": "timing",
+      "block": 9,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 232,
+      "stage": "timing",
+      "block": 9,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 233,
+      "stage": "timing",
+      "block": 9,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 234,
+      "stage": "timing",
+      "block": 9,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 235,
+      "stage": "timing",
+      "block": 9,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 236,
+      "stage": "timing",
+      "block": 9,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 237,
+      "stage": "timing",
+      "block": 9,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 238,
+      "stage": "timing",
+      "block": 9,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 239,
+      "stage": "timing",
+      "block": 10,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 240,
+      "stage": "timing",
+      "block": 10,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 241,
+      "stage": "timing",
+      "block": 10,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 242,
+      "stage": "timing",
+      "block": 10,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 243,
+      "stage": "timing",
+      "block": 10,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 244,
+      "stage": "timing",
+      "block": 10,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 245,
+      "stage": "timing",
+      "block": 10,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 246,
+      "stage": "timing",
+      "block": 10,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 247,
+      "stage": "timing",
+      "block": 10,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 248,
+      "stage": "timing",
+      "block": 10,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 249,
+      "stage": "timing",
+      "block": 10,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 250,
+      "stage": "timing",
+      "block": 10,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 251,
+      "stage": "timing",
+      "block": 10,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 252,
+      "stage": "timing",
+      "block": 10,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 253,
+      "stage": "timing",
+      "block": 11,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 254,
+      "stage": "timing",
+      "block": 11,
+      "bits": 8,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 255,
+      "stage": "timing",
+      "block": 11,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 256,
+      "stage": "timing",
+      "block": 11,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 257,
+      "stage": "timing",
+      "block": 11,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 258,
+      "stage": "timing",
+      "block": 11,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 259,
+      "stage": "timing",
+      "block": 11,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 260,
+      "stage": "timing",
+      "block": 11,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 261,
+      "stage": "timing",
+      "block": 11,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 262,
+      "stage": "timing",
+      "block": 11,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 263,
+      "stage": "timing",
+      "block": 11,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 264,
+      "stage": "timing",
+      "block": 11,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 265,
+      "stage": "timing",
+      "block": 11,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 266,
+      "stage": "timing",
+      "block": 11,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 267,
+      "stage": "timing",
+      "block": 12,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 268,
+      "stage": "timing",
+      "block": 12,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 269,
+      "stage": "timing",
+      "block": 12,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 270,
+      "stage": "timing",
+      "block": 12,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 271,
+      "stage": "timing",
+      "block": 12,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 272,
+      "stage": "timing",
+      "block": 12,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 273,
+      "stage": "timing",
+      "block": 12,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 274,
+      "stage": "timing",
+      "block": 12,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 275,
+      "stage": "timing",
+      "block": 12,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 276,
+      "stage": "timing",
+      "block": 12,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 277,
+      "stage": "timing",
+      "block": 12,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 278,
+      "stage": "timing",
+      "block": 12,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 279,
+      "stage": "timing",
+      "block": 12,
+      "bits": 16,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 280,
+      "stage": "timing",
+      "block": 12,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 281,
+      "stage": "profile",
+      "block": 1,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 282,
+      "stage": "profile",
+      "block": 1,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 283,
+      "stage": "profile",
+      "block": 1,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 284,
+      "stage": "profile",
+      "block": 1,
+      "bits": 1,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 285,
+      "stage": "profile",
+      "block": 1,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 286,
+      "stage": "profile",
+      "block": 1,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 287,
+      "stage": "profile",
+      "block": 1,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 288,
+      "stage": "profile",
+      "block": 1,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 289,
+      "stage": "profile",
+      "block": 1,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 290,
+      "stage": "profile",
+      "block": 1,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 291,
+      "stage": "profile",
+      "block": 1,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 292,
+      "stage": "profile",
+      "block": 1,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 293,
+      "stage": "profile",
+      "block": 1,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 294,
+      "stage": "profile",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 295,
+      "stage": "profile",
+      "block": 2,
+      "bits": 13,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 296,
+      "stage": "profile",
+      "block": 2,
+      "bits": 3,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 297,
+      "stage": "profile",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 298,
+      "stage": "profile",
+      "block": 2,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 299,
+      "stage": "profile",
+      "block": 2,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 300,
+      "stage": "profile",
+      "block": 2,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 301,
+      "stage": "profile",
+      "block": 2,
+      "bits": 13,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 302,
+      "stage": "profile",
+      "block": 2,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 303,
+      "stage": "profile",
+      "block": 2,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 304,
+      "stage": "profile",
+      "block": 2,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 305,
+      "stage": "profile",
+      "block": 2,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 306,
+      "stage": "profile",
+      "block": 2,
+      "bits": 8,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 307,
+      "stage": "profile",
+      "block": 2,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 308,
+      "stage": "profile",
+      "block": 2,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 309,
+      "stage": "profile",
+      "block": 3,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 310,
+      "stage": "profile",
+      "block": 3,
+      "bits": 25,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 311,
+      "stage": "profile",
+      "block": 3,
+      "bits": 1,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 312,
+      "stage": "profile",
+      "block": 3,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 313,
+      "stage": "profile",
+      "block": 3,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 314,
+      "stage": "profile",
+      "block": 3,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 315,
+      "stage": "profile",
+      "block": 3,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 316,
+      "stage": "profile",
+      "block": 3,
+      "bits": 3,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 317,
+      "stage": "profile",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 318,
+      "stage": "profile",
+      "block": 3,
+      "bits": 25,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 319,
+      "stage": "profile",
+      "block": 3,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 320,
+      "stage": "profile",
+      "block": 3,
+      "bits": 31,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 321,
+      "stage": "profile",
+      "block": 3,
+      "bits": 31,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 322,
+      "stage": "profile",
+      "block": 3,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 323,
+      "stage": "profile",
+      "block": 4,
+      "bits": 3,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 324,
+      "stage": "profile",
+      "block": 4,
+      "bits": 1,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 325,
+      "stage": "profile",
+      "block": 4,
+      "bits": 13,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 326,
+      "stage": "profile",
+      "block": 4,
+      "bits": 8,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 327,
+      "stage": "profile",
+      "block": 4,
+      "bits": 8,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 328,
+      "stage": "profile",
+      "block": 4,
+      "bits": 31,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 329,
+      "stage": "profile",
+      "block": 4,
+      "bits": 1,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 330,
+      "stage": "profile",
+      "block": 4,
+      "bits": 3,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 331,
+      "stage": "profile",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 332,
+      "stage": "profile",
+      "block": 4,
+      "bits": 13,
+      "operation": "decode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 333,
+      "stage": "profile",
+      "block": 4,
+      "bits": 25,
+      "operation": "decode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 334,
+      "stage": "profile",
+      "block": 4,
+      "bits": 25,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 335,
+      "stage": "profile",
+      "block": 4,
+      "bits": 31,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 336,
+      "stage": "profile",
+      "block": 4,
+      "bits": 16,
+      "operation": "decode",
+      "order": "ABBA"
+    }
+  ]
+}

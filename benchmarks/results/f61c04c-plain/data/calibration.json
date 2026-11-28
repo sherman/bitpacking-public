@@ -1,0 +1,211 @@
+{
+  "frozen": "2026-11-28T17:05:17.604791+00:00",
+  "cases": {
+    "encode-16": {
+      "mde_slowdown_pct": 5.1,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.816,
+      "power_at_grid_points": {
+        "0": 0.0445,
+        "0.5": 0.057,
+        "1": 0.089,
+        "2": 0.1935,
+        "3": 0.3775,
+        "5": 0.7975,
+        "10": 1.0
+      }
+    },
+    "encode-3": {
+      "mde_slowdown_pct": 6.1,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.809,
+      "power_at_grid_points": {
+        "0": 0.047,
+        "0.5": 0.0655,
+        "1": 0.1155,
+        "2": 0.2305,
+        "3": 0.35,
+        "5": 0.6635,
+        "10": 0.995
+      }
+    },
+    "encode-8": {
+      "mde_slowdown_pct": 7.7,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8045,
+      "power_at_grid_points": {
+        "0": 0.051,
+        "0.5": 0.068,
+        "1": 0.08,
+        "2": 0.1015,
+        "3": 0.18,
+        "5": 0.413,
+        "10": 0.9585
+      }
+    },
+    "encode-1": {
+      "mde_slowdown_pct": 5.8,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.801,
+      "power_at_grid_points": {
+        "0": 0.0485,
+        "0.5": 0.0625,
+        "1": 0.113,
+        "2": 0.2665,
+        "3": 0.432,
+        "5": 0.693,
+        "10": 0.9925
+      }
+    },
+    "decode-25": {
+      "mde_slowdown_pct": 4.5,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.82,
+      "power_at_grid_points": {
+        "0": 0.0375,
+        "0.5": 0.048,
+        "1": 0.085,
+        "2": 0.221,
+        "3": 0.4765,
+        "5": 0.9035
+      }
+    },
+    "decode-13": {
+      "mde_slowdown_pct": 5.1,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.812,
+      "power_at_grid_points": {
+        "0": 0.0425,
+        "0.5": 0.0565,
+        "1": 0.086,
+        "2": 0.1925,
+        "3": 0.374,
+        "5": 0.799
+      }
+    },
+    "decode-8": {
+      "mde_slowdown_pct": 6.2,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8075,
+      "power_at_grid_points": {
+        "0": 0.042,
+        "0.5": 0.0525,
+        "1": 0.0685,
+        "2": 0.1385,
+        "3": 0.2655,
+        "5": 0.6175,
+        "10": 0.999
+      }
+    },
+    "encode-31": {
+      "mde_slowdown_pct": 2.9,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8215,
+      "power_at_grid_points": {
+        "0": 0.0435,
+        "0.5": 0.0775,
+        "1": 0.1805,
+        "2": 0.533,
+        "3": 0.846,
+        "5": 0.9995
+      }
+    },
+    "decode-1": {
+      "mde_slowdown_pct": 6.0,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.81,
+      "power_at_grid_points": {
+        "0": 0.0455,
+        "0.5": 0.0575,
+        "1": 0.083,
+        "2": 0.183,
+        "3": 0.331,
+        "5": 0.694,
+        "10": 0.997
+      }
+    },
+    "encode-25": {
+      "mde_slowdown_pct": 5.3,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8055,
+      "power_at_grid_points": {
+        "0": 0.0375,
+        "0.5": 0.0515,
+        "1": 0.0805,
+        "2": 0.2075,
+        "3": 0.3775,
+        "5": 0.764,
+        "10": 0.999
+      }
+    },
+    "encode-13": {
+      "mde_slowdown_pct": 10.8,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.803,
+      "power_at_grid_points": {
+        "0": 0.0495,
+        "0.5": 0.051,
+        "1": 0.0575,
+        "2": 0.0835,
+        "3": 0.131,
+        "5": 0.264,
+        "10": 0.741
+      }
+    },
+    "decode-3": {
+      "mde_slowdown_pct": 8.5,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8075,
+      "power_at_grid_points": {
+        "0": 0.05,
+        "0.5": 0.055,
+        "1": 0.065,
+        "2": 0.1105,
+        "3": 0.183,
+        "5": 0.384,
+        "10": 0.9245
+      }
+    },
+    "decode-31": {
+      "mde_slowdown_pct": 4.0,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.807,
+      "power_at_grid_points": {
+        "0": 0.0455,
+        "0.5": 0.0855,
+        "1": 0.198,
+        "2": 0.426,
+        "3": 0.5785,
+        "5": 0.9165,
+        "10": 1.0
+      }
+    },
+    "decode-16": {
+      "mde_slowdown_pct": 3.6,
+      "attainable_p_min": 0.00048828125,
+      "draws": 2000,
+      "estimated_power": 0.8095,
+      "power_at_grid_points": {
+        "0": 0.051,
+        "0.5": 0.0665,
+        "1": 0.1225,
+        "2": 0.3385,
+        "3": 0.6425,
+        "5": 0.988
+      }
+    }
+  }
+}

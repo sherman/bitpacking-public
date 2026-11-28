@@ -1,0 +1,100 @@
+{
+  "complete_forks": 1344,
+  "governor_boundary_readings": 2688,
+  "verified_console_records": 1344,
+  "verified_timing_intervals_and_p_values": 14,
+  "verified_counter_changes": 42,
+  "verified_calibration_forecasts": 14,
+  "verified_13_bit_trace_rows": 192,
+  "class_entries_compared": 1713,
+  "different_classes": [
+    "io/github/sherman/bitpacking/Vector512Kernels.class"
+  ],
+  "changed_width_specific_methods": {
+    "encode-1": [
+      "pack0_1"
+    ],
+    "decode-1": [
+      "unpack0_1Part0",
+      "unpack0_1Part1"
+    ],
+    "encode-3": [],
+    "decode-3": [],
+    "encode-8": [],
+    "decode-8": [],
+    "encode-13": [
+      "pack0_13"
+    ],
+    "decode-13": [
+      "unpack0_13Part1"
+    ],
+    "encode-16": [],
+    "decode-16": [],
+    "encode-25": [
+      "pack0_25"
+    ],
+    "decode-25": [
+      "unpack0_25Part1"
+    ],
+    "encode-31": [],
+    "decode-31": []
+  },
+  "last_vs_first_measured_iteration_pct": {
+    "encode-1": {
+      "A": -0.33583342761446255,
+      "B": 0.273390056859002
+    },
+    "decode-1": {
+      "A": -0.6176356096860958,
+      "B": -0.9346409252432242
+    },
+    "encode-3": {
+      "A": -1.289439953015148,
+      "B": -0.9068683995929416
+    },
+    "decode-3": {
+      "A": -1.1519322299961776,
+      "B": -1.38039799691263
+    },
+    "encode-8": {
+      "A": 0.5393740974634964,
+      "B": 0.16178009370106938
+    },
+    "decode-8": {
+      "A": -0.07048692037989746,
+      "B": -0.5749501075993702
+    },
+    "encode-13": {
+      "A": -0.990400256765056,
+      "B": -1.3528394212478312
+    },
+    "decode-13": {
+      "A": -0.6563726352737942,
+      "B": -1.0389253660820552
+    },
+    "encode-16": {
+      "A": -2.4077839646977406,
+      "B": -2.364963875877768
+    },
+    "decode-16": {
+      "A": -3.755212349999859,
+      "B": -3.5571494173420315
+    },
+    "encode-25": {
+      "A": 0.38482279336715663,
+      "B": -2.231946851328137
+    },
+    "decode-25": {
+      "A": -0.2883510911103504,
+      "B": -1.1529322770842843
+    },
+    "encode-31": {
+      "A": -0.4180451446470501,
+      "B": -0.9410587033595208
+    },
+    "decode-31": {
+      "A": -1.603228731245443,
+      "B": -0.75107385483828
+    }
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "encode-1": {
+    "operation": "encode",
+    "bits": 1,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 5.8,
+      "sd_log_pct": 5.7709557480462506
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -11.637897625492181,
+      "p": 0.00244140625,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -17.01955436453424,
+        "upper_pct": -5.8999316030955695,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 4.245313695185384,
+      "candidate_ns_per_codec_block": 3.751248433458708,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -14.755796300707752,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -8.966555407075369,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.0019122332226269197,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "decode-1": {
+    "operation": "decode",
+    "bits": 1,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 6.0,
+      "sd_log_pct": 5.262572661860586
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -17.205359476774255,
+      "p": 0.00048828125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -20.78640920852903,
+        "upper_pct": -13.576764266211672,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 4.044648899575778,
+      "candidate_ns_per_codec_block": 3.3487525168303702,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -17.050612406759594,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -4.589666738840351,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.004829387909225671,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "IMPROVED",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "encode-3": {
+    "operation": "encode",
+    "bits": 3,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 6.1,
+      "sd_log_pct": 6.620319872136626
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -0.2224701050886142,
+      "p": 0.9033203125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -5.903350858403454,
+        "upper_pct": 5.777976162106843,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 4.453008803830565,
+      "candidate_ns_per_codec_block": 4.443102190465079,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -14.740361519707173,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -0.033227747576780986,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.004966130737870283,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "decode-3": {
+    "operation": "decode",
+    "bits": 3,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 8.5,
+      "sd_log_pct": 9.55169063625307
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -0.959299443424259,
+      "p": 0.63232421875,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -5.238339143371639,
+        "upper_pct": 3.5275746857153885,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 3.882210779831312,
+      "candidate_ns_per_codec_block": 3.8449687534278345,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": 8.248168502694089,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": 0.20690275501866934,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": 0.0018820283013275987,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "encode-8": {
+    "operation": "encode",
+    "bits": 8,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 7.7,
+      "sd_log_pct": 8.806249167436626
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -0.6179533083471436,
+      "p": 0.64208984375,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -3.3655330994014543,
+        "upper_pct": 2.275092890467239,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 4.806995328648112,
+      "candidate_ns_per_codec_block": 4.7772903419826385,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -1.6819121094807723,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -0.2503654299757237,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.0005655934787684503,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "decode-8": {
+    "operation": "decode",
+    "bits": 8,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 6.2,
+      "sd_log_pct": 3.895421271219554
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": 3.2697680882758204,
+      "p": 0.0625,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -0.1656947195773365,
+        "upper_pct": 6.7874322498158435,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 3.4193618123724696,
+      "candidate_ns_per_codec_block": 3.531167013736112,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -2.2126707297192647,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": 0.25955954051273,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": 6.20642734582978e-05,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "encode-13": {
+    "operation": "encode",
+    "bits": 13,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 10.8,
+      "sd_log_pct": 11.936728803569258
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -10.467093060941899,
+      "p": 0.00048828125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -12.927527451290624,
+        "upper_pct": -7.847639870717524,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 5.717542324685023,
+      "candidate_ns_per_codec_block": 5.119081848761502,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -9.787512545948745,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -7.5929442009822905,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.0035779945851520142,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "IMPROVED",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "decode-13": {
+    "operation": "decode",
+    "bits": 13,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 5.1,
+      "sd_log_pct": 4.489624568379315
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -17.03746687781848,
+      "p": 0.00048828125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -19.407261755436807,
+        "upper_pct": -14.625814622319453,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 5.212011618093456,
+      "candidate_ns_per_codec_block": 4.324016864992732,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -21.181801410144658,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -9.262400008107948,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.009138155478564605,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "IMPROVED",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "encode-16": {
+    "operation": "encode",
+    "bits": 16,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 5.1,
+      "sd_log_pct": 5.871558724490713
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": 10.739792951646116,
+      "p": 0.0009765625,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": 6.558940893443122,
+        "upper_pct": 15.04759610958648,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 4.541388591394899,
+      "candidate_ns_per_codec_block": 5.029124323240388,
+      "verdict": "REGRESSED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": 9.981618574505294,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": 11.017491468615301,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": 0.001270571366582715,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "REGRESSED",
+      "12": "REGRESSED"
+    }
+  },
+  "decode-16": {
+    "operation": "decode",
+    "bits": 16,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 3.6,
+      "sd_log_pct": 3.9003187790645177
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": 1.4137359500176632,
+      "p": 0.255859375,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -1.1708700057775623,
+        "upper_pct": 4.0389914867560845,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 3.9287472406194923,
+      "candidate_ns_per_codec_block": 3.984289352745455,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -4.072124238262284,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -0.5318003070125842,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.0012231511548246939,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "encode-25": {
+    "operation": "encode",
+    "bits": 25,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 5.3,
+      "sd_log_pct": 6.272238166432819
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -13.291480762474919,
+      "p": 0.00048828125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -16.301639863284414,
+        "upper_pct": -10.254438036620543,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 6.06737191668635,
+      "candidate_ns_per_codec_block": 5.260928345592177,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -7.647194951341879,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -6.492948400504672,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.003574401983517714,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "IMPROVED",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "decode-25": {
+    "operation": "decode",
+    "bits": 25,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 4.5,
+      "sd_log_pct": 5.034930892739369
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -15.009080056113403,
+      "p": 0.00048828125,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -17.30576161220485,
+        "upper_pct": -12.461898450883192,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 5.910084925173767,
+      "candidate_ns_per_codec_block": 5.0230355473701485,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -14.848915416487488,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -8.621276351403486,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.007104626273799234,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "IMPROVED",
+      "8": "IMPROVED",
+      "12": "IMPROVED"
+    }
+  },
+  "encode-31": {
+    "operation": "encode",
+    "bits": 31,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 2.9,
+      "sd_log_pct": 3.271368566332172
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -2.454861969318256,
+      "p": 0.14404296875,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -5.838404147107208,
+        "upper_pct": 0.9619710209596982,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 6.027678227377492,
+      "candidate_ns_per_codec_block": 5.879707046940723,
+      "verdict": "INCONCLUSIVE"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": 0.9060868551063285,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -0.05386823050767968,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": 0.001033376858316221,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "INCONCLUSIVE"
+    }
+  },
+  "decode-31": {
+    "operation": "decode",
+    "bits": 31,
+    "calibration": {
+      "blocks": 8,
+      "forks": 32,
+      "mde_slowdown_pct": 4.0,
+      "sd_log_pct": 4.718193583332873
+    },
+    "timing": {
+      "blocks": 12,
+      "forks": 48,
+      "effect_pct": -3.1344780289252063,
+      "p": 0.013671875,
+      "timing_ci": {
+        "confidence": 0.95,
+        "lower_pct": -5.50664124044178,
+        "upper_pct": -0.724389458518095,
+        "method": "exact_sign_flip"
+      },
+      "baseline_ns_per_codec_block": 6.204671239635165,
+      "candidate_ns_per_codec_block": 6.01018718286176,
+      "verdict": "IMPROVED"
+    },
+    "profile": {
+      "blocks": 4,
+      "forks": 16,
+      "counters": {
+        "cycles": {
+          "change": -1.3361946859845535,
+          "unit": "%"
+        },
+        "instructions": {
+          "change": -0.025172482221885003,
+          "unit": "%"
+        },
+        "gc.alloc.rate.norm": {
+          "change": -0.0013308174318904667,
+          "unit": "B/op"
+        }
+      }
+    },
+    "timing_budget_replay": {
+      "6": "INCONCLUSIVE",
+      "8": "INCONCLUSIVE",
+      "12": "IMPROVED"
+    }
+  }
+}
