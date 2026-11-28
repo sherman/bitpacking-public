@@ -1,0 +1,132 @@
+{
+  "plan": [
+    {
+      "sequence": 1,
+      "build": "B",
+      "block": 1,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 2,
+      "build": "A",
+      "block": 1,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 3,
+      "build": "B",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 4,
+      "build": "A",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 5,
+      "build": "B",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 6,
+      "build": "A",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 7,
+      "build": "B",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 8,
+      "build": "A",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 9,
+      "build": "A",
+      "block": 5,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 10,
+      "build": "B",
+      "block": 5,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 11,
+      "build": "B",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 12,
+      "build": "A",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 13,
+      "build": "A",
+      "block": 7,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 14,
+      "build": "B",
+      "block": 7,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 15,
+      "build": "B",
+      "block": 8,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 16,
+      "build": "A",
+      "block": 8,
+      "order": "ABBA"
+    }
+  ],
+  "seed": 1616333,
+  "started": "2026-11-28T18:33:16.036228+00:00",
+  "cpu": 2,
+  "policy": {
+    "scaling_driver": "amd-pstate-epp",
+    "scaling_governor": "performance",
+    "energy_performance_preference": "performance",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "5573000"
+  },
+  "power_profile": "performance",
+  "builds": {
+    "A": {
+      "revision": "476bd9f401116d85083ca93178c5f364640046b8",
+      "jar": "builds/baseline.jar",
+      "sha256": "b3507c4f5c5ee1ee7a5eb3635bd2fd47fdf04ec7a5678b781ba75df0a154fdd8",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "136a09c534928097755d7e5d01de8e99229845bda4c17ad73a80e8aeeaa663e6"
+    },
+    "B": {
+      "revision": "f61c04c2141fe70571af97a8ae3dedebe7d924a1",
+      "jar": "builds/candidate.jar",
+      "sha256": "1f40cef38603cdb18c095e8ff499b810cbadd6419157a6750c450ee7dc401ef5",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "0ea426dd13eea0577a0ce670660604e31a47309fd6bbfe0102ced0a60e9afa34"
+    }
+  },
+  "primary_metric": "instructions",
+  "treatment": {
+    "A": "noinline",
+    "B": "inline"
+  }
+}

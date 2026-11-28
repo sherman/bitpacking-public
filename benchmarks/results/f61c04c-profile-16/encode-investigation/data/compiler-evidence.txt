@@ -1,0 +1,289 @@
+Oracle HotSpot compiler evidence for 16-bit plain encode
+
+java version "25.0.1" 2025-10-21 LTS
+Java(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)
+intx FreqInlineSize                           = 325                                 {C2 pd product} {default}
+
+Archived JAR disassembly (javap -p -c), pack0_16
+
+parent
+   14  ldc #253                // int 65535
+   36  ldc #253                // int 65535
+   58  ldc #253                // int 65535
+   80  ldc #253                // int 65535
+  102  ldc #253                // int 65535
+  124  ldc #253                // int 65535
+  146  ldc #253                // int 65535
+  168  ldc #253                // int 65535
+  324  return
+
+commit
+   14  ldc_w #265                // int 65535
+   37  ldc_w #265                // int 65535
+   60  ldc_w #265                // int 65535
+   83  ldc_w #265                // int 65535
+  106  ldc_w #265                // int 65535
+  129  ldc_w #265                // int 65535
+  152  ldc_w #265                // int 65535
+  175  ldc_w #265                // int 65535
+  332  return
+
+All 157 bytecode instructions agree after resolving constant-pool operands and normalizing ldc_w to ldc.
+
+Constant-pool entries encountered before Integer 65535 (javap -v, symbolic entries)
+
+Only in parent before mask (18)
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.PREVIOUS:Ljdk/incubator/vector/VectorShuffle;
+  NameAndType PREVIOUS:Ljdk/incubator/vector/VectorShuffle;
+  Utf8 PREVIOUS
+  Methodref jdk/incubator/vector/IntVector.rearrange:(Ljdk/incubator/vector/VectorShuffle;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  NameAndType rearrange:(Ljdk/incubator/vector/VectorShuffle;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  Utf8 (Ljdk/incubator/vector/VectorShuffle;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.BYTE_COMPACT1:Ljdk/incubator/vector/VectorShuffle;
+  NameAndType BYTE_COMPACT1:Ljdk/incubator/vector/VectorShuffle;
+  Utf8 BYTE_COMPACT1
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.BYTE_TAIL1:Ljdk/incubator/vector/VectorMask;
+  NameAndType BYTE_TAIL1:Ljdk/incubator/vector/VectorMask;
+  Utf8 BYTE_TAIL1
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.BYTE_COMPACT2:Ljdk/incubator/vector/VectorShuffle;
+  NameAndType BYTE_COMPACT2:Ljdk/incubator/vector/VectorShuffle;
+  Utf8 BYTE_COMPACT2
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.BYTE_TAIL2:Ljdk/incubator/vector/VectorMask;
+  NameAndType BYTE_TAIL2:Ljdk/incubator/vector/VectorMask;
+  Utf8 BYTE_TAIL2
+
+Only in commit before mask (30)
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.PREVIOUS_INDEX:Ljdk/incubator/vector/IntVector;
+  NameAndType PREVIOUS_INDEX:Ljdk/incubator/vector/IntVector;
+  Utf8 PREVIOUS_INDEX
+  Methodref jdk/incubator/vector/IntVector.selectFrom:(Ljdk/incubator/vector/Vector;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  NameAndType selectFrom:(Ljdk/incubator/vector/Vector;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  Utf8 selectFrom
+  Utf8 (Ljdk/incubator/vector/Vector;Ljdk/incubator/vector/Vector;)Ljdk/incubator/vector/IntVector;
+  Fieldref jdk/incubator/vector/VectorOperators.I2B:Ljdk/incubator/vector/VectorOperators$Conversion;
+  NameAndType I2B:Ljdk/incubator/vector/VectorOperators$Conversion;
+  Utf8 I2B
+  Utf8 Ljdk/incubator/vector/VectorOperators$Conversion;
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.B128:Ljdk/incubator/vector/VectorSpecies;
+  NameAndType B128:Ljdk/incubator/vector/VectorSpecies;
+  Utf8 B128
+  Methodref jdk/incubator/vector/IntVector.convertShape:(Ljdk/incubator/vector/VectorOperators$Conversion;Ljdk/incubator/vector/VectorSpecies;I)Ljdk/incubator/vector/Vector;
+  NameAndType convertShape:(Ljdk/incubator/vector/VectorOperators$Conversion;Ljdk/incubator/vector/VectorSpecies;I)Ljdk/incubator/vector/Vector;
+  Utf8 convertShape
+  Utf8 (Ljdk/incubator/vector/VectorOperators$Conversion;Ljdk/incubator/vector/VectorSpecies;I)Ljdk/incubator/vector/Vector;
+  Fieldref jdk/incubator/vector/VectorOperators.I2S:Ljdk/incubator/vector/VectorOperators$Conversion;
+  NameAndType I2S:Ljdk/incubator/vector/VectorOperators$Conversion;
+  Utf8 I2S
+  Fieldref io/github/sherman/bitpacking/Vector512Kernels.SH256:Ljdk/incubator/vector/VectorSpecies;
+  NameAndType SH256:Ljdk/incubator/vector/VectorSpecies;
+  Utf8 SH256
+  Class jdk/incubator/vector/ShortVector
+  Utf8 jdk/incubator/vector/ShortVector
+  Methodref jdk/incubator/vector/ShortVector.reinterpretAsBytes:()Ljdk/incubator/vector/ByteVector;
+  NameAndType reinterpretAsBytes:()Ljdk/incubator/vector/ByteVector;
+  Utf8 reinterpretAsBytes
+  Utf8 ()Ljdk/incubator/vector/ByteVector;
+
+asm-1-A   governor performance -> performance
+Compiled method (c2) 665 1417       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1417' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='35391' iicount='35391' stamp='0.649'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='325' compile_id='1341' compiler='c1' level='3' iicount='35391'/>
+<call method='1404' count='34880' prof_factor='1.000000' inline='1'/>
+<inline_success reason='inline (hot)'/>
+Native hot path: pack0 60 + called pack0_16 0 = 60 instructions
+
+asm-2-B   governor performance -> performance
+Compiled method (c2) 651 1422       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1422' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='34802' iicount='34802' stamp='0.651'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='333' compile_id='1349' compiler='c1' level='3' iicount='34802'/>
+<call method='1404' count='34291' prof_factor='1.000000' inline='1'/>
+<inline_fail reason='hot method too big'/>
+Native hot path: pack0 15 + called pack0_16 58 = 73 instructions
+
+asm-3-B   governor performance -> performance
+Compiled method (c2) 663 1410       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1410' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='37037' iicount='37037' stamp='0.664'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='333' compile_id='1332' compiler='c1' level='3' iicount='37037'/>
+<call method='1404' count='36526' prof_factor='1.000000' inline='1'/>
+<inline_fail reason='hot method too big'/>
+Native hot path: pack0 15 + called pack0_16 58 = 73 instructions
+
+asm-4-A   governor performance -> performance
+Compiled method (c2) 700 1433       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1433' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='32122' iicount='32122' stamp='0.686'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='325' compile_id='1350' compiler='c1' level='3' iicount='32122'/>
+<call method='1404' count='31611' prof_factor='1.000000' inline='1'/>
+<inline_success reason='inline (hot)'/>
+Native hot path: pack0 60 + called pack0_16 0 = 60 instructions
+
+asm-block-1-A   governor performance -> performance
+Compiled method (c2) 653 1421       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1421' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='34304' iicount='34304' stamp='0.653'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='325' compile_id='1346' compiler='c1' level='3' iicount='34304'/>
+<call method='1404' count='33793' prof_factor='1.000000' inline='1'/>
+<inline_fail reason='disallowed by CompileCommand'/>
+Native hot path: pack0 15 + called pack0_16 58 = 73 instructions
+
+asm-force-1-B   governor performance -> performance
+Compiled method (c2) 678 1426       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+<task compile_id='1426' method='io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V' bytes='539' count='35925' iicount='35925' stamp='0.664'>
+<bc code='184' bci='342'/>
+<method id='1404' holder='1386' name='pack0_16' return='1212' arguments='1376 1210 1374 1210 1210' flags='10' bytes='333' compile_id='1346' compiler='c1' level='3' iicount='35925'/>
+<call method='1404' count='35414' prof_factor='1.000000' inline='1'/>
+<inline_success reason='force inline by CompileCommand'/>
+Native hot path: pack0 60 + called pack0_16 0 = 60 instructions
+
+All six paths have the same sequence of vector mnemonics, including vzeroupper.
+vmovdqu32 vpbroadcastd vpandd vpandd vpandd vpandd vmovdqu32 vmovdqu32 vmovdqu32 vpandd vpandd vpandd vpslld vpternlogd vpslld vmovdqu64 vpternlogd vmovdqu32 vmovdqu32 vpslld vmovdqu64 vpternlogd vpslld vpternlogd vmovdqu32 vmovdqu32 vzeroupper
+
+Representative default hot paths from the verified entry through the first return.
+Cold branches are not taken on this valid width-16 input. The printed runtime call target is annotated with the bytecode call site.
+
+asm-1-A
+Compiled method (c2) 665 1417       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+  0x0000725a4411aba0:   mov    DWORD PTR [rsp-0x14000],eax  ;   {other}
+  0x0000725a4411aba7:   push   rbp
+  0x0000725a4411aba8:   sub    rsp,0x210
+  0x0000725a4411abaf:   nop
+  0x0000725a4411abb0:   cmp    DWORD PTR [r15+0x20],0x0
+  0x0000725a4411abb8:   jne    0x0000725a4411af46
+  0x0000725a4411abbe:   cmp    r9d,0x10
+  0x0000725a4411abc2:   jne    0x0000725a4411ae3c
+  0x0000725a4411abc8:   mov    r10d,DWORD PTR [rsi+0xc]     ; implicit exception: dispatches to 0x0000725a4411af00
+  0x0000725a4411abcc:   add    r10d,0xfffffff1
+  0x0000725a4411abd0:   test   r10d,r10d
+  0x0000725a4411abd3:   jl     0x0000725a4411ae6c
+  0x0000725a4411abd9:   cmp    edx,r10d
+  0x0000725a4411abdc:   jae    0x0000725a4411ad18
+  0x0000725a4411abe2:   mov    r11d,edx
+  0x0000725a4411abe5:   vmovdqu32 zmm7,ZMMWORD PTR [rsi+r11*4+0x10]
+  0x0000725a4411abf0:   add    edx,0x70
+  0x0000725a4411abf3:   vpbroadcastd zmm0,DWORD PTR [rip+0xffffffffffffff83]        # 0x0000725a4411ab80
+  0x0000725a4411abfd:   cmp    edx,r10d
+  0x0000725a4411ac00:   jae    0x0000725a4411ad48
+  0x0000725a4411ac06:   mov    r10d,DWORD PTR [rcx+0xc]     ; implicit exception: dispatches to 0x0000725a4411af18
+  0x0000725a4411ac0a:   vpandd zmm8,zmm0,ZMMWORD PTR [rsi+r11*4+0x150]
+  0x0000725a4411ac15:   vpandd zmm9,zmm0,ZMMWORD PTR [rsi+r11*4+0xd0]
+  0x0000725a4411ac20:   vpandd zmm10,zmm0,ZMMWORD PTR [rsi+r11*4+0x1d0]
+  0x0000725a4411ac2b:   vpandd zmm1,zmm0,ZMMWORD PTR [rsi+r11*4+0x50]
+  0x0000725a4411ac36:   vmovdqu32 zmm2,ZMMWORD PTR [rsi+r11*4+0x190]
+  0x0000725a4411ac41:   vmovdqu32 zmm3,ZMMWORD PTR [rsi+r11*4+0x90]
+  0x0000725a4411ac4c:   vmovdqu32 zmm4,ZMMWORD PTR [rsi+r11*4+0x110]
+  0x0000725a4411ac57:   vpandd zmm11,zmm0,zmm2
+  0x0000725a4411ac5d:   vpandd zmm12,zmm0,zmm4
+  0x0000725a4411ac63:   vpandd zmm5,zmm0,zmm3
+  0x0000725a4411ac69:   vpslld zmm1,zmm1,0x10
+  0x0000725a4411ac70:   vpternlogd zmm7,zmm0,zmm1,0xea
+  0x0000725a4411ac77:   add    r10d,0xffffffc1
+  0x0000725a4411ac7b:   test   r10d,r10d
+  0x0000725a4411ac7e:   jl     0x0000725a4411ae9c
+  0x0000725a4411ac84:   cmp    r8d,r10d
+  0x0000725a4411ac87:   jae    0x0000725a4411ad88
+  0x0000725a4411ac8d:   vpslld zmm1,zmm9,0x10
+  0x0000725a4411ac94:   vmovdqu64 zmm5,zmm0
+  0x0000725a4411ac9a:   vpternlogd zmm5,zmm3,zmm1,0xea
+  0x0000725a4411aca1:   lea    r11d,[r8+0xc0]
+  0x0000725a4411aca8:   movsxd r9,r8d
+  0x0000725a4411acab:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x10],zmm7
+  0x0000725a4411acb6:   cmp    r11d,r10d
+  0x0000725a4411acb9:   jae    0x0000725a4411adec
+  0x0000725a4411acbf:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x50],zmm5
+  0x0000725a4411acca:   vpslld zmm1,zmm10,0x10
+  0x0000725a4411acd1:   vmovdqu64 zmm3,zmm0
+  0x0000725a4411acd7:   vpternlogd zmm3,zmm2,zmm1,0xea
+  0x0000725a4411acde:   vpslld zmm1,zmm8,0x10
+  0x0000725a4411ace5:   vpternlogd zmm0,zmm4,zmm1,0xea
+  0x0000725a4411acec:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x90],zmm0
+  0x0000725a4411acf7:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0xd0],zmm3
+  0x0000725a4411ad02:   vzeroupper
+  0x0000725a4411ad05:   add    rsp,0x210
+  0x0000725a4411ad0c:   pop    rbp
+  0x0000725a4411ad0d:   cmp    rsp,QWORD PTR [r15+0x28]     ;   {poll_return}
+  0x0000725a4411ad11:   ja     0x0000725a4411af30
+  0x0000725a4411ad17:   ret
+
+asm-2-B
+Compiled method (c2) 651 1422       4       io.github.sherman.bitpacking.Vector512Kernels::pack0 (539 bytes)
+  0x00007b1d0c11c280:   mov    DWORD PTR [rsp-0x14000],eax
+  0x00007b1d0c11c287:   push   rbp
+  0x00007b1d0c11c288:   sub    rsp,0x30
+  0x00007b1d0c11c28c:   cmp    DWORD PTR [r15+0x20],0x0
+  0x00007b1d0c11c294:   jne    0x00007b1d0c11c30f
+  0x00007b1d0c11c29a:   cmp    r9d,0x10
+  0x00007b1d0c11c29e:   jne    0x00007b1d0c11c2c0
+  0x00007b1d0c11c2a0:   mov    r9d,edi
+  0x00007b1d0c11c2a3:   call   0x00007b1d0bb871e0           ; ImmutableOopMap {}
+                                                            ;*invokestatic pack0_16 {reexecute=0 rethrow=0 return_oop=0}
+  0x00007b1d0c11c2a8:   nop    DWORD PTR [rax+rax*1+0x120]  ;   {post_call_nop}
+  0x00007b1d0c11c2b0:   add    rsp,0x30
+  0x00007b1d0c11c2b4:   pop    rbp
+  0x00007b1d0c11c2b5:   cmp    rsp,QWORD PTR [r15+0x28]     ;   {poll_return}
+  0x00007b1d0c11c2b9:   ja     0x00007b1d0c11c2f9
+  0x00007b1d0c11c2bf:   ret
+
+asm-2-B
+Compiled method (c2) 664 1423       4       io.github.sherman.bitpacking.Vector512Kernels::pack0_16 (333 bytes)
+  0x00007b1d0c11c5a0:   mov    DWORD PTR [rsp-0x14000],eax  ;   {other}
+  0x00007b1d0c11c5a7:   push   rbp
+  0x00007b1d0c11c5a8:   sub    rsp,0x210
+  0x00007b1d0c11c5af:   nop
+  0x00007b1d0c11c5b0:   cmp    DWORD PTR [r15+0x20],0x0
+  0x00007b1d0c11c5b8:   jne    0x00007b1d0c11c90a
+  0x00007b1d0c11c5be:   mov    r10d,DWORD PTR [rsi+0xc]     ; implicit exception: dispatches to 0x00007b1d0c11c8c4
+  0x00007b1d0c11c5c2:   add    r10d,0xfffffff1
+  0x00007b1d0c11c5c6:   test   r10d,r10d
+  0x00007b1d0c11c5c9:   jl     0x00007b1d0c11c830
+  0x00007b1d0c11c5cf:   cmp    edx,r10d
+  0x00007b1d0c11c5d2:   jae    0x00007b1d0c11c70e
+  0x00007b1d0c11c5d8:   mov    r9d,edx
+  0x00007b1d0c11c5db:   vmovdqu32 zmm7,ZMMWORD PTR [rsi+r9*4+0x10]
+  0x00007b1d0c11c5e6:   add    edx,0x70
+  0x00007b1d0c11c5e9:   vpbroadcastd zmm0,DWORD PTR [rip+0xffffffffffffff8d]        # 0x00007b1d0c11c580
+  0x00007b1d0c11c5f3:   cmp    edx,r10d
+  0x00007b1d0c11c5f6:   jae    0x00007b1d0c11c73c
+  0x00007b1d0c11c5fc:   mov    r10d,DWORD PTR [rcx+0xc]     ; implicit exception: dispatches to 0x00007b1d0c11c8dc
+  0x00007b1d0c11c600:   vpandd zmm8,zmm0,ZMMWORD PTR [rsi+r9*4+0x150]
+  0x00007b1d0c11c60b:   vpandd zmm9,zmm0,ZMMWORD PTR [rsi+r9*4+0xd0]
+  0x00007b1d0c11c616:   vpandd zmm10,zmm0,ZMMWORD PTR [rsi+r9*4+0x1d0]
+  0x00007b1d0c11c621:   vpandd zmm1,zmm0,ZMMWORD PTR [rsi+r9*4+0x50]
+  0x00007b1d0c11c62c:   vmovdqu32 zmm2,ZMMWORD PTR [rsi+r9*4+0x190]
+  0x00007b1d0c11c637:   vmovdqu32 zmm3,ZMMWORD PTR [rsi+r9*4+0x90]
+  0x00007b1d0c11c642:   vmovdqu32 zmm4,ZMMWORD PTR [rsi+r9*4+0x110]
+  0x00007b1d0c11c64d:   vpandd zmm11,zmm0,zmm2
+  0x00007b1d0c11c653:   vpandd zmm12,zmm0,zmm4
+  0x00007b1d0c11c659:   vpandd zmm5,zmm0,zmm3
+  0x00007b1d0c11c65f:   vpslld zmm1,zmm1,0x10
+  0x00007b1d0c11c666:   vpternlogd zmm7,zmm0,zmm1,0xea
+  0x00007b1d0c11c66d:   add    r10d,0xffffffc1
+  0x00007b1d0c11c671:   test   r10d,r10d
+  0x00007b1d0c11c674:   jl     0x00007b1d0c11c860
+  0x00007b1d0c11c67a:   cmp    r8d,r10d
+  0x00007b1d0c11c67d:   jae    0x00007b1d0c11c77c
+  0x00007b1d0c11c683:   vpslld zmm1,zmm9,0x10
+  0x00007b1d0c11c68a:   vmovdqu64 zmm5,zmm0
+  0x00007b1d0c11c690:   vpternlogd zmm5,zmm3,zmm1,0xea
+  0x00007b1d0c11c697:   lea    r11d,[r8+0xc0]
+  0x00007b1d0c11c69e:   movsxd r9,r8d
+  0x00007b1d0c11c6a1:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x10],zmm7
+  0x00007b1d0c11c6ac:   cmp    r11d,r10d
+  0x00007b1d0c11c6af:   jae    0x00007b1d0c11c7e0
+  0x00007b1d0c11c6b5:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x50],zmm5
+  0x00007b1d0c11c6c0:   vpslld zmm1,zmm10,0x10
+  0x00007b1d0c11c6c7:   vmovdqu64 zmm3,zmm0
+  0x00007b1d0c11c6cd:   vpternlogd zmm3,zmm2,zmm1,0xea
+  0x00007b1d0c11c6d4:   vpslld zmm1,zmm8,0x10
+  0x00007b1d0c11c6db:   vpternlogd zmm0,zmm4,zmm1,0xea
+  0x00007b1d0c11c6e2:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0x90],zmm0
+  0x00007b1d0c11c6ed:   vmovdqu32 ZMMWORD PTR [rcx+r9*1+0xd0],zmm3
+  0x00007b1d0c11c6f8:   vzeroupper
+  0x00007b1d0c11c6fb:   add    rsp,0x210
+  0x00007b1d0c11c702:   pop    rbp
+  0x00007b1d0c11c703:   cmp    rsp,QWORD PTR [r15+0x28]     ;   {poll_return}
+  0x00007b1d0c11c707:   ja     0x00007b1d0c11c8f4
+  0x00007b1d0c11c70d:   ret

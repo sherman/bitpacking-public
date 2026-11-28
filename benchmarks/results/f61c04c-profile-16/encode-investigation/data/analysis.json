@@ -1,0 +1,100 @@
+{
+  "A": {
+    "blocks": 8,
+    "forks": 32,
+    "counters": {
+      "cycles": {
+        "change": 14.998538052185323,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": 9.009046472718897,
+          "upper": 21.22920800954145,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "increase"
+      },
+      "instructions": {
+        "change": 11.018032060345753,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": 10.428972333420763,
+          "upper": 11.468878330177812,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "increase"
+      },
+      "gc.alloc.rate.norm": {
+        "change": 0.003692157749122964,
+        "unit": "B/op",
+        "ci": {
+          "confidence": 0.95,
+          "lower": 0.001890736032588704,
+          "upper": 0.0057398843433657054,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "increase"
+      }
+    },
+    "mean_instructions_per_op": {
+      "default": 1974.0042729394968,
+      "noinline": 2191.491803200788
+    }
+  },
+  "B": {
+    "blocks": 8,
+    "forks": 32,
+    "counters": {
+      "cycles": {
+        "change": -8.997792729395375,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -13.99094011261809,
+          "upper": -4.447269264552001,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "decrease"
+      },
+      "instructions": {
+        "change": -9.220408877412886,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -9.672965604732903,
+          "upper": -8.731480716878206,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "decrease"
+      },
+      "gc.alloc.rate.norm": {
+        "change": -0.0017659851413736722,
+        "unit": "B/op",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -0.0034309660047707135,
+          "upper": 1.527081221066341e-05,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0546875,
+        "p_holm": 0.0546875,
+        "direction": null
+      }
+    },
+    "mean_instructions_per_op": {
+      "default": 2181.4377379353377,
+      "inline": 1980.3391995900163
+    }
+  }
+}
