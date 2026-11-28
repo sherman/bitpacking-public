@@ -25,14 +25,6 @@ The reusable runner, CPU guard, analysis, report card and protocol tests live in
 
 Removed the development pilots after retaining the independent protocol tests. The extracted collector completed a fresh twelve-fork 13-bit decode check across all three stages. Its seeded scheduler reproduced all 336 original block entries. Regenerating the report and running the independent audit reproduced the stored outputs byte for byte. The local commit includes the measured JARs, both build logs and all fork records.
 
-## Audit of the pilot cleanup
-
-The user asked Codex to check what the cleanup removed. All 27 measured experiment files and reports in `975eba7` matched their pre-cleanup hashes. On the original performance-governor pilot measurements the committed harness reproduced all 80 block timing effects, the timing estimates and p-values for seven conditions and ten replicates, and all three paired profiler estimates.
-
-The cleanup also removed reusable validation. The Java CPU and allocation controls, independent raw-slot audit for allocation, held-out calibration checks, profiler-overhead and iteration-length comparisons, and the ay verdict comparison existed only in the pilot. The pilot reported counter p-values and dispersion diagnostics and recorded host load and fuller CPU policy per fork. The final collector retains the governor check and only its governor values at the fork boundaries.
-
-Codex reconstructed the pilot source from its recorded edits and checked the surviving per-fork JMH files against the recovered schedules. The actual positive controls reproduced +99.95% timing for doubled arithmetic and +256.00003 B/op for the larger array. Temporary recovery materials include the JMH results, console logs, source, prior worklog, and three derived files matching original hashes. Complete copies of the pilot JSONL records with their original controller timestamps, elapsed times and policy readings were not located. The recovery materials are outside the checkout.
-
 ## Counter uncertainty and 16-bit follow-up
 
 The user approved marginal 95% intervals and two-sided p-values for the three profiled counters, Holm-adjusted highlights within each benchmark case, and checking an eight-block profiling budget using profiled A/A and positive controls. Codex owns implementation and verification. The follow-up will profile both 16-bit operations at a fresh, fixed eight-block endpoint and report them alongside their original unprofiled timing results. The historical four-block profiler records remain a separate experiment.
