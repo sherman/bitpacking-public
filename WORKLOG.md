@@ -1,5 +1,19 @@
 # JMH performance harness worklog
 
+## Current harness review
+
+The user owns the list of questions and will raise them one at a time. Codex examines each against the archived `f61c04c-plain` run and relevant benchmark or harness code. Codec optimization is outside this review.
+
+1. **Fork bimodality, examined.** Across the 14 parent-only calibration cases, the median relative SD was 6.93% across fork scores, 7.15% within four-fork blocks and 1.43% across iterations within a JVM (pooled within each group). Encode-8 and decode-1 had distinct bands. A retrospective dip test rejected unimodality for those two and decode-3 and decode-8 after Holm adjustment. The historical run did not record buffer addresses.
+
+   Codex ran a temporary JMH diagnostic against the archived parent JAR on CPU 2. In eight JVMs per workload, each JVM tried all four combinations of integer and byte buffer addresses at 0 or 32 modulo 64 in balanced order. Changing the integer buffer from 0 to 32 increased encode-8 from 63.46 to 77.28 ns/op and decode-1 from 58.16 to 65.80 ns/op on average. In another 16 forks per workload using the benchmark's own allocations, all seven 64-byte-aligned integer buffers were in the fast band and all 25 others in the slow band. The results support reporting fork distributions by revision and stage, and balancing measured buffer alignments when comparing revisions at equal placement. The original timing verdicts still describe the sampled mixtures.
+
+   For the follow-up design question, Codex recomputed the relative SD of fork means. Ordinary allocations gave 6.67% for encode-8 and 8.05% for decode-1 (16 parent forks each, three iterations). Giving each fork all four layouts yielded 1.01% and 0.90% (eight parent forks each, four iterations). This experiment measured an equally weighted mix of layouts. The user preferred a simpler setup for regression comparisons.
+
+   After the user asked for a simpler benchmark-level solution, Codex tested the HotSpot fork setting `-XX:ObjectAlignmentInBytes=64` on both archived builds. The probe observed element zero at offset 16 modulo 64 in both buffers in all 96 measured iterations. Across eight forks per build and workload, relative SD for encode-8 and decode-1 was 1.37% and 0.80% on the parent, and 1.18% and 2.38% on the candidate. The vector benchmark now requests that flag in its JMH `@Fork` annotation for regression comparisons at a single layout. This stability check covers the two example workloads on this JDK. Maven verification passed all 41 tests, and a fork launched from the rebuilt benchmark JAR recorded the flag.
+
+   [Saved layout measurements](benchmarks/results/f61c04c-layout/forks.jsonl) contain all 80 diagnostic forks across the ordinary, crossover and fixed-layout runs. Each line includes the tested revision, the original JMH result, and the integer and byte buffer data addresses modulo 4096 recorded before each iteration in warmup and measurement order. The next review item is pending.
+
 ## Goal and ownership
 
 The user chose the protocol, the plain codec workloads and a local Git commit containing the harness and the completed experiment. Codex owns the implementation, cleanup and verification.
