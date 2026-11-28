@@ -1,4 +1,4 @@
-// Generated SIMD kernels for the sixteen-stream format.
+// SIMD kernels for the sixteen-stream format.
 // Derived SIMD helpers: Copyright (c) 2016 Paul Masurel, MIT license.
 package io.github.sherman.bitpacking;
 
@@ -501,22 +501,15 @@ final class Vector512Kernels {
     }
 
     private static void pack0_16(int[] in, int ip, byte[] out, int op, int initial) {
-        IntVector raw0 = IntVector.fromArray(S, in, ip + 0);
-        IntVector v0 = raw0.and(65535);
-        IntVector raw1 = IntVector.fromArray(S, in, ip + 16);
-        IntVector v1 = raw1.and(65535);
-        IntVector raw2 = IntVector.fromArray(S, in, ip + 32);
-        IntVector v2 = raw2.and(65535);
-        IntVector raw3 = IntVector.fromArray(S, in, ip + 48);
-        IntVector v3 = raw3.and(65535);
-        IntVector raw4 = IntVector.fromArray(S, in, ip + 64);
-        IntVector v4 = raw4.and(65535);
-        IntVector raw5 = IntVector.fromArray(S, in, ip + 80);
-        IntVector v5 = raw5.and(65535);
-        IntVector raw6 = IntVector.fromArray(S, in, ip + 96);
-        IntVector v6 = raw6.and(65535);
-        IntVector raw7 = IntVector.fromArray(S, in, ip + 112);
-        IntVector v7 = raw7.and(65535);
+        // Each odd vector is shifted left by 16, which already discards its upper bits.
+        IntVector v0 = IntVector.fromArray(S, in, ip).and(0xffff);
+        IntVector v1 = IntVector.fromArray(S, in, ip + 16);
+        IntVector v2 = IntVector.fromArray(S, in, ip + 32).and(0xffff);
+        IntVector v3 = IntVector.fromArray(S, in, ip + 48);
+        IntVector v4 = IntVector.fromArray(S, in, ip + 64).and(0xffff);
+        IntVector v5 = IntVector.fromArray(S, in, ip + 80);
+        IntVector v6 = IntVector.fromArray(S, in, ip + 96).and(0xffff);
+        IntVector v7 = IntVector.fromArray(S, in, ip + 112);
         IntVector w0 = v0.or(v1.lanewise(LSHL, 16));
         ((ByteVector) w0.reinterpretShape(B, 0)).intoArray(out, op + 0);
         IntVector w1 = v2.or(v3.lanewise(LSHL, 16));

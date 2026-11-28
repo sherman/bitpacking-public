@@ -36,3 +36,7 @@ Completed 192 fresh profiled forks on CPU 2. The 16-bit encode run measured +13.
 ## 16-bit encode instruction investigation
 
 Codex traced the +10.46% instructions/op to C2 inlining on the measured JDK. A constant-pool shift widened eight mask loads in the unchanged 16-bit kernel. Its bytecode grew from 325 to 333 bytes, above the 325-byte hot inlining limit. Six compiler probes verified the default and reversed decisions. The extra 13 native instructions per codec block predict +208/op against the original measured +206.7/op. In 64 guarded profiler forks, forbidding this inline in the parent raised instructions/op by 11.02%, and forcing it in the commit lowered them by 9.22%. The investigation and independent counter audit are complete. [Report, confidence intervals and assembly](benchmarks/results/f61c04c-profile-16/encode-investigation/README.md)
+
+## Plain 16-bit encode fix
+
+The user confirmed that the vector kernel is handwritten. Codex removed the four masks made redundant by the 16-bit left shift. All 41 project tests and 4,096 additional direct byte comparisons passed. The fixed method occupies 275 bytecode bytes and C2 inlines it by default. The 112-fork campaign on CPU 2 measured −10.45% time/op (95% CI −13.53% to −7.25%) and −9.35% instructions/op (95% CI −9.74% to −8.90%) against the regressed JAR. The schedule, raw forks and intervals were verified. [16-bit source fix report](benchmarks/results/f61c04c-profile-16/encode-investigation/source-fix/encode.html)

@@ -72,7 +72,7 @@ not within a stream, so the predecessor of value `16k+j` is value `16k+j−1`.
 That value is in the neighbouring lane. This detail is why sorted mode needs
 cross-lane work, as the sections below show.
 
-The kernels are fully unrolled per width and per mode. There are 32 × 3 pack
+The handwritten kernels are fully unrolled per width and per mode. There are 32 × 3 pack
 methods and 32 × 3 unpack methods, so every shift amount and mask is a
 constant.
 
@@ -108,7 +108,9 @@ java --add-modules=jdk.incubator.vector -XX:+UnlockDiagnosticVMOptions -XX:-Tier
 For width `b`, with `mask = (1 << b) − 1`:
 
 1. Load the 8 input vectors `in[0..15]`, `in[16..31]`, … `in[112..127]` as
-   `v0 … v7` and AND each with `mask`. Width 32 skips the AND.
+   `v0 … v7` and AND each with `mask`. At width 16, mask only the even
+   vectors. Shifting each odd vector left by 16 discards its upper bits.
+   Width 32 skips the AND.
 2. For each output word `w[m]` (bits `32m … 32m+31` of every stream), OR
    together every field that overlaps those bits:
    - Field `k` starts at bit `b·k`.
@@ -157,7 +159,7 @@ IntVector v2 = w0.lanewise(LSHR, 26).or(w1.lanewise(LSHL, 6)).and(8191);
 
 Each `v[k]` is stored straight to `out[16k … 16k+15]`, again without shuffles.
 
-The generator splits plain unpack into `unpack0_<b>Part0` (fields 0–3) and
+Plain unpack uses `unpack0_<b>Part0` (fields 0–3) and
 `Part1` (fields 4–7). The two halves don't depend on each other, so the split
 costs nothing here. It was left alone.
 
@@ -429,7 +431,7 @@ previous.intoArray(out, op + 16*k);
 
 Each output was built from the **previous output**. Output `k` needs a permute
 of output `k−1`, then an add, so the 8 outputs formed one serial chain of
-permute → add → permute → add. Worse, the generator split the method in two
+permute → add → permute → add. The old kernel split the method in two
 (`unpack1_<b>Part0` for vectors 0–3, `Part1` for 4–7) and passed the carry
 through memory: `Part1(…, out[op + 63])`. The second half had to wait for a
 64-byte store, a scalar reload of one int from it, and a broadcast.
@@ -616,6 +618,3 @@ regressions.
   array.
 - **The scalar fallback** used on CPUs without AVX-512 works bit by bit. A
   256-bit (AVX2) kernel would help those machines a lot.
-- `Vector512Kernels.java` says it is generated, but the generator is not in this
-  repository. Any regeneration must carry these changes over, or it will
-  silently revert them. That includes the loop-form detection methods from §7.

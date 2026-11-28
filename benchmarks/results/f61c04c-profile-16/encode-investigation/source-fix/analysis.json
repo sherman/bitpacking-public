@@ -1,0 +1,81 @@
+{
+  "timing": {
+    "blocks": 12,
+    "forks": 48,
+    "effect_pct": -10.454955861279505,
+    "p": 0.00048828125,
+    "timing_ci": {
+      "confidence": 0.95,
+      "lower_pct": -13.525389475876965,
+      "upper_pct": -7.253583931540929,
+      "method": "exact_sign_flip"
+    },
+    "baseline_ns_per_op": 81.36103337363498,
+    "candidate_ns_per_op": 72.85477324614057,
+    "verdict": "IMPROVED"
+  },
+  "profile": {
+    "blocks": 8,
+    "forks": 32,
+    "counters": {
+      "cycles": {
+        "change": -12.722288836591943,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -19.259161480084234,
+          "upper": -7.71603060418465,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "decrease"
+      },
+      "instructions": {
+        "change": -9.347522412493065,
+        "unit": "%",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -9.74483795736574,
+          "upper": -8.904619944604178,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.0078125,
+        "p_holm": 0.0234375,
+        "direction": "decrease"
+      },
+      "gc.alloc.rate.norm": {
+        "change": -0.0033747001263720287,
+        "unit": "B/op",
+        "ci": {
+          "confidence": 0.95,
+          "lower": -0.0054433846602658,
+          "upper": -0.0013251901518748447,
+          "method": "exact_sign_flip"
+        },
+        "p": 0.015625,
+        "p_holm": 0.0234375,
+        "direction": "decrease"
+      }
+    }
+  },
+  "mean_instructions_per_op": {
+    "A": 2194.183979815164,
+    "B": 1989.0175705728109
+  },
+  "calibration": {
+    "mde_slowdown_pct": 6.8,
+    "attainable_p_min": 0.00048828125,
+    "draws": 2000,
+    "estimated_power": 0.806,
+    "power_at_grid_points": {
+      "0": 0.041,
+      "0.5": 0.0485,
+      "1": 0.0655,
+      "2": 0.134,
+      "3": 0.241,
+      "5": 0.552,
+      "10": 0.9895
+    }
+  }
+}

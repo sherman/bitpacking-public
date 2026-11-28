@@ -1,0 +1,23 @@
+parent
+<nmethod compile_id="1386" compiler="c2" level="4" entry="0x00007aa55c11b1a0" size="1280" address="0x00007aa55c11b088" relocation_offset="-804891304" consts_offset="248" insts_offset="280" stub_offset="1224" scopes_data_offset="-804892288" scopes_pcs_offset="-804892464" dependencies_offset="-804892632" nul_chk_table_offset="-804892488" oops_offset="1248" metadata_offset="-804891240" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="39209" iicount="39209" stamp="0.557" />
+<task compile_id="1386" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="30015" iicount="30015" stamp="0.544">
+<bc code="184" bci="342" />
+<method id="1404" holder="1386" name="pack0_16" return="1212" arguments="1376 1210 1374 1210 1210" flags="10" bytes="325" compile_id="1313" compiler="c1" level="3" iicount="30015" />
+<call method="1404" count="29504" prof_factor="1.000000" inline="1" />
+<inline_success reason="inline (hot)" />
+
+regressed
+<nmethod compile_id="1375" compiler="c2" level="4" entry="0x00007a760811b580" size="456" address="0x00007a760811b488" relocation_offset="-870921320" insts_offset="248" stub_offset="408" scopes_data_offset="-870921384" scopes_pcs_offset="-870921448" dependencies_offset="-870921480" handler_table_offset="-870921472" oops_offset="448" metadata_offset="-870921280" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="29202" iicount="29202" stamp="0.524" />
+<task compile_id="1375" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="29202" iicount="29202" stamp="0.524">
+<bc code="184" bci="342" />
+<method id="1404" holder="1386" name="pack0_16" return="1212" arguments="1376 1210 1374 1210 1210" flags="10" bytes="333" compile_id="1307" compiler="c1" level="3" iicount="29202" />
+<call method="1404" count="28691" prof_factor="1.000000" inline="1" />
+<inline_fail reason="hot method too big" />
+
+source_fix
+<nmethod compile_id="1355" compiler="c2" level="4" entry="0x0000713c4811a2a0" size="1264" address="0x0000713c4811a188" relocation_offset="-871873096" consts_offset="248" insts_offset="280" stub_offset="1208" scopes_data_offset="-871873984" scopes_pcs_offset="-871874160" dependencies_offset="-871874328" nul_chk_table_offset="-871874184" oops_offset="1232" metadata_offset="-871873032" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="65712" iicount="65712" stamp="0.561" />
+<task compile_id="1355" method="io.github.sherman.bitpacking.Vector512Kernels pack0 ([II[BIII)V" bytes="539" count="53061" iicount="53061" stamp="0.549">
+<bc code="184" bci="342" />
+<method id="1404" holder="1386" name="pack0_16" return="1212" arguments="1376 1210 1374 1210 1210" flags="10" bytes="275" compile_id="1275" compiler="c1" level="3" iicount="53061" />
+<call method="1404" count="52550" prof_factor="1.000000" inline="1" />
+<inline_success reason="inline (hot)" />

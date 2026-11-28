@@ -1,0 +1,249 @@
+{
+  "started": "2026-11-28T18:52:25.297054+00:00",
+  "seed": 165503,
+  "cpu": 2,
+  "policy": {
+    "scaling_driver": "amd-pstate-epp",
+    "scaling_governor": "performance",
+    "energy_performance_preference": "performance",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "5573000"
+  },
+  "power_profile": "performance",
+  "builds": {
+    "parent": "b3507c4f5c5ee1ee7a5eb3635bd2fd47fdf04ec7a5678b781ba75df0a154fdd8",
+    "regressed": "1f40cef38603cdb18c095e8ff499b810cbadd6419157a6750c450ee7dc401ef5",
+    "source_fix": "107c8de04a0fe838691d0528f371135307d53e31c5a0b2906fe5488fbc24ecd9"
+  },
+  "roles": {
+    "A": "regressed",
+    "B": "source_fix"
+  },
+  "java": "/home/sherman/.sdkman/candidates/java/25.0.1-oracle/bin/java",
+  "plan": [
+    {
+      "sequence": 1,
+      "stage": "calibration",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 2,
+      "stage": "calibration",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 3,
+      "stage": "calibration",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 4,
+      "stage": "calibration",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 5,
+      "stage": "calibration",
+      "block": 5,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 6,
+      "stage": "calibration",
+      "block": 6,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 7,
+      "stage": "calibration",
+      "block": 7,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 8,
+      "stage": "calibration",
+      "block": 8,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 9,
+      "stage": "timing",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 10,
+      "stage": "timing",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 11,
+      "stage": "timing",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 12,
+      "stage": "timing",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 13,
+      "stage": "timing",
+      "block": 5,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 14,
+      "stage": "timing",
+      "block": 6,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 15,
+      "stage": "timing",
+      "block": 7,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 16,
+      "stage": "timing",
+      "block": 8,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 17,
+      "stage": "timing",
+      "block": 9,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 18,
+      "stage": "timing",
+      "block": 10,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 19,
+      "stage": "timing",
+      "block": 11,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 20,
+      "stage": "timing",
+      "block": 12,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 21,
+      "stage": "profile",
+      "block": 1,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 22,
+      "stage": "profile",
+      "block": 2,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 23,
+      "stage": "profile",
+      "block": 3,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 24,
+      "stage": "profile",
+      "block": 4,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 25,
+      "stage": "profile",
+      "block": 5,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 26,
+      "stage": "profile",
+      "block": 6,
+      "bits": 16,
+      "operation": "encode",
+      "order": "ABBA"
+    },
+    {
+      "sequence": 27,
+      "stage": "profile",
+      "block": 7,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    },
+    {
+      "sequence": 28,
+      "stage": "profile",
+      "block": 8,
+      "bits": 16,
+      "operation": "encode",
+      "order": "BAAB"
+    }
+  ]
+}

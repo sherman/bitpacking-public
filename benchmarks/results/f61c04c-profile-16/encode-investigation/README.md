@@ -42,3 +42,9 @@ To inspect the compiler decision on an individual fork, use the Java command rec
 ```
 
 Read the C2 compilation of `pack0` at bytecode offset 342 in the fork JVM. The C2 compile ID in the disassembly identifies the matching XML task. The original benchmark, the recorded JAR hashes and the directives are sufficient to repeat both interventions. [Forbid inlining](noinline.json) · [Force inlining](inline.json)
+
+## Handwritten kernel fix
+
+The fix keeps the mask on each low-half vector and removes it from each high-half vector. The 32-bit left shift by 16 already discards the upper bits. Folding the masked loads into their declarations brings the bytecode size down from 333 to 275 bytes. With the default policy, HotSpot 25.0.1 inlined the fixed kernel into `pack0`. One assembly capture counted 61 native instructions on the hot path, compared with 73 for the regressed JAR and 60 for its parent. [Default C2 decisions](source-fix/inlining.txt) · [Fixed assembly](source-fix/fixed-assembly.txt)
+
+On CPU 2, plain encode at 16 bits improved from 81.36 to 72.85 ns/op in 12 unprofiled ABBA/BAAB blocks (−10.45%, 95% CI −13.53% to −7.25%). Eight separate profiler blocks measured −9.35% instructions/op (95% CI −9.74% to −8.90%, Holm p = 0.0234375). Each JMH operation packed 2,048 integers. All 41 Maven tests passed, and 4,096 additional blocks with arbitrary high bits matched an independent byte-by-byte reference. [Timing and counter report](source-fix/encode.html) · [Plan](source-fix/plan.json) · [Raw forks](source-fix/forks.jsonl) · [JMH console](source-fix/console.txt.gz)
