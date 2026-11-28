@@ -14,6 +14,8 @@ At 16 bits, encode rose from 4.541 to 5.029 ns per codec block. The commit was s
 
 The first eight timing blocks per case recovered the six improvements at 1, 13 and 25 bits and the 16-bit encode regression. The last four blocks changed the 31-bit decode verdict. This retrospective comparison used 448 versus 672 timing forks. The reported confidence intervals and verdicts use the planned twelve-block endpoint.
 
+The counter cards now include individual 95% intervals and raw and Holm-adjusted p-values. With four profiling blocks the smallest two-sided p-value is 0.125, so all counter intervals span the full range. A [separate eight-block study](../f61c04c-profile-16/README.md) revisits 16-bit encode and decode.
+
 ## Evidence
 
 - [Frozen schedule, JVM, CPU, kernel and JAR hashes](data/plan.json)

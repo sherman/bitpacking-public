@@ -4,6 +4,7 @@
   "verified_console_records": 1344,
   "verified_timing_intervals_and_p_values": 14,
   "verified_counter_changes": 42,
+  "verified_counter_intervals_and_raw_and_holm_p_values": 42,
   "verified_calibration_forecasts": 14,
   "verified_13_bit_trace_rows": 192,
   "class_entries_compared": 1713,

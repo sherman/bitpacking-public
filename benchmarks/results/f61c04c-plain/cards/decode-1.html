@@ -31,9 +31,26 @@
   .tick { top: 32px; transform: translateX(-50%); font-size: 13px; color: #d4d9d4; }
   figcaption { margin-top: 3px; }
   .details { border-top: 1px solid #454845; padding-top: 12px; }
+  .counters { overflow-x: auto; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 5px 6px; vertical-align: top; }
+  th:first-child { text-align: left; padding-left: 0; }
+  th { font-weight: 500; } thead { color: #c1c7c2; border-bottom: 1px solid #454845; }
+  td strong { color: #fff; } td small { display: block; } .note { color: #c1c7c2; font-size: 13px; margin: 7px 0; }
   .row { padding: 5px 0; } .row dd { text-align: right; }
   .spaced { margin-top: 9px; } footer { margin-top: 20px; flex-wrap: wrap; }
   a { color: #c1d9d1; text-underline-offset: 3px; }
+  @media (max-width: 580px) {
+    .counters thead { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+    .counters table, .counters tbody { display: block; }
+    .counters tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 8px 0; border-top: 1px solid #454845; }
+    .counters th, .counters td { padding: 0; }
+    .counters td:nth-child(3), .counters td:nth-child(4), .counters td:nth-child(5) { grid-column: 1 / -1; display: flex; justify-content: space-between; }
+    .counters td:nth-child(3)::before { content: "95% interval"; color: #c1c7c2; }
+    .counters td:nth-child(4)::before { content: "Raw p"; color: #c1c7c2; }
+    .counters td:nth-child(5)::before { content: "Holm p"; color: #c1c7c2; }
+    .counters td small { display: inline; }
+  }
   @media (max-width: 450px) {
     main { margin: 14px auto; padding: 0 10px; }
     article { padding: 16px; } .values { gap: 14px; } .row { gap: 8px; }
@@ -56,10 +73,14 @@
       </div>
       <figcaption>Positive values mean slower. The two-sided timing test gave <span class="num">p = 0.0004883</span> at the planned final check.</figcaption>
     </figure>
+    <div class="counters"><table aria-label="Profiled counter changes">
+      <thead><tr><th scope="col">Counter</th><th scope="col">Change</th><th scope="col">95% interval</th><th scope="col">p</th><th scope="col">Holm p</th></tr></thead>
+      <tbody><tr><th scope="row">Cycles/op</th><td>−17.05%</td><td>All possible changes</td><td>0.125</td><td>0.375</td></tr>
+<tr><th scope="row">Instructions/op</th><td>−4.59%</td><td>All possible changes</td><td>0.125</td><td>0.375</td></tr>
+<tr><th scope="row">Allocated heap B/op</th><td>−0.004829</td><td>All possible changes</td><td>0.125</td><td>0.375</td></tr></tbody>
+    </table></div>
+    <p class="note">Intervals apply to each counter individually. An increase or decrease is highlighted when its Holm-adjusted p ≤ 0.05 across the three counters for this case.</p>
     <dl class="details">
-      <div class="row"><dt>Cycles/op</dt><dd>−17.05%</dd></div>
-      <div class="row"><dt>Instructions/op</dt><dd>−4.59%</dd></div>
-      <div class="row"><dt>Allocated heap bytes/op</dt><dd>-0.005 B/op</dd></div>
       <div class="row spaced"><dt>Timing blocks / JVM forks</dt><dd>12 / 48</dd></div>
       <div class="row"><dt>Profiled blocks / JVM forks</dt><dd>4 / 16</dd></div>
       <div class="row"><dt>A/A-calibrated slowdown MDE</dt><dd>6% at 80% power</dd></div>

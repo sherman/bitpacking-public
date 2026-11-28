@@ -29,15 +29,42 @@
       "counters": {
         "cycles": {
           "change": -14.755796300707752,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -8.966555407075369,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.0019122332226269197,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 0.625,
+          "direction": null
         }
       }
     },
@@ -77,15 +104,42 @@
       "counters": {
         "cycles": {
           "change": -17.050612406759594,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -4.589666738840351,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.004829387909225671,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -125,15 +179,42 @@
       "counters": {
         "cycles": {
           "change": -14.740361519707173,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -0.033227747576780986,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.875,
+          "p_holm": 0.875,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.004966130737870283,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -173,15 +254,42 @@
       "counters": {
         "cycles": {
           "change": 8.248168502694089,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.25,
+          "p_holm": 0.75,
+          "direction": null
         },
         "instructions": {
           "change": 0.20690275501866934,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.875,
+          "p_holm": 0.875,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": 0.0018820283013275987,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.25,
+          "p_holm": 0.75,
+          "direction": null
         }
       }
     },
@@ -221,15 +329,42 @@
       "counters": {
         "cycles": {
           "change": -1.6819121094807723,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.875,
+          "p_holm": 1.0,
+          "direction": null
         },
         "instructions": {
           "change": -0.2503654299757237,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.0005655934787684503,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         }
       }
     },
@@ -269,15 +404,42 @@
       "counters": {
         "cycles": {
           "change": -2.2126707297192647,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         },
         "instructions": {
           "change": 0.25955954051273,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": 6.20642734582978e-05,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.875,
+          "p_holm": 1.0,
+          "direction": null
         }
       }
     },
@@ -317,15 +479,42 @@
       "counters": {
         "cycles": {
           "change": -9.787512545948745,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -7.5929442009822905,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.0035779945851520142,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -365,15 +554,42 @@
       "counters": {
         "cycles": {
           "change": -21.181801410144658,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -9.262400008107948,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.009138155478564605,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -413,15 +629,42 @@
       "counters": {
         "cycles": {
           "change": 9.981618574505294,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": 11.017491468615301,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": 0.001270571366582715,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.25,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -461,15 +704,42 @@
       "counters": {
         "cycles": {
           "change": -4.072124238262284,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.5,
+          "p_holm": 1.0,
+          "direction": null
         },
         "instructions": {
           "change": -0.5318003070125842,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.0012231511548246939,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -509,15 +779,42 @@
       "counters": {
         "cycles": {
           "change": -7.647194951341879,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.25,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -6.492948400504672,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.003574401983517714,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -557,15 +854,42 @@
       "counters": {
         "cycles": {
           "change": -14.848915416487488,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "instructions": {
           "change": -8.621276351403486,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.007104626273799234,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.125,
+          "p_holm": 0.375,
+          "direction": null
         }
       }
     },
@@ -605,15 +929,42 @@
       "counters": {
         "cycles": {
           "change": 0.9060868551063285,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         },
         "instructions": {
           "change": -0.05386823050767968,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 1.0,
+          "p_holm": 1.0,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": 0.001033376858316221,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         }
       }
     },
@@ -653,15 +1004,42 @@
       "counters": {
         "cycles": {
           "change": -1.3361946859845535,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         },
         "instructions": {
           "change": -0.025172482221885003,
-          "unit": "%"
+          "unit": "%",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 1.0,
+          "p_holm": 1.0,
+          "direction": null
         },
         "gc.alloc.rate.norm": {
           "change": -0.0013308174318904667,
-          "unit": "B/op"
+          "unit": "B/op",
+          "ci": {
+            "confidence": 0.95,
+            "lower": null,
+            "upper": null,
+            "method": "exact_sign_flip"
+          },
+          "p": 0.625,
+          "p_holm": 1.0,
+          "direction": null
         }
       }
     },

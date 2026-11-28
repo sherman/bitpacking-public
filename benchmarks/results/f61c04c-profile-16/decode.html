@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VectorCodecBenchmark.decompress · JMH comparison</title>
+<style>
+  :root { color-scheme: dark; font: 16px/1.5 Inter, system-ui, sans-serif; background: #101111; color: #f1f2f1; }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  main { width: min(820px, 100%); margin: 36px auto; padding: 0 18px; }
+  article { padding: 24px; background: #202221; border: 1px solid #454845; border-radius: 15px; }
+  header, .values, .row, footer { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  header { flex-wrap: wrap; }
+  h1 { font-size: 19px; margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  .badge { color: var(--accent); background: var(--tint); font: 600 12px/1.8 ui-monospace, monospace; padding: 1px 9px; border-radius: 18px; }
+  p { margin: 0; } .context, dt, footer, figcaption { color: #c1c7c2; }
+  .context, footer, figcaption { font-size: 13px; }
+  .context { margin: 5px 0 22px; }
+  dl, dd, figure { margin: 0; } dd, .num { font-variant-numeric: tabular-nums; }
+  .values { justify-content: start; align-items: start; gap: 7%; }
+  .values > div { flex: 1; }
+  dt { font-size: 14px; }
+  .estimate { font-size: 26px; font-weight: 650; } .bounds { font-size: 20px; font-weight: 600; }
+  figure { margin: 30px 0 22px; }
+  .plot { position: relative; height: 58px; margin: 0 19px; }
+  .axis, .zero, .interval, .point, .tick { position: absolute; }
+  .axis { top: 21px; width: 100%; border-top: 2px solid #676b67; }
+  .zero { top: 0; height: 32px; left: 50%; border-left: 2px dashed #969c96; }
+  .interval { top: 19px; height: 6px; border-radius: 4px; background: var(--accent); }
+  .point { top: 22px; left: 61.781133%; transform: translate(-50%, -50%); background: var(--accent); width: 13px; height: 13px; border-radius: 100%; }
+  .tick { top: 32px; transform: translateX(-50%); font-size: 13px; color: #d4d9d4; }
+  figcaption { margin-top: 3px; }
+  .details { border-top: 1px solid #454845; padding-top: 12px; }
+  .counters { overflow-x: auto; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 5px 6px; vertical-align: top; }
+  th:first-child { text-align: left; padding-left: 0; }
+  th { font-weight: 500; } thead { color: #c1c7c2; border-bottom: 1px solid #454845; }
+  td strong { color: #fff; } td small { display: block; } .note { color: #c1c7c2; font-size: 13px; margin: 7px 0; }
+  .row { padding: 5px 0; } .row dd { text-align: right; }
+  .spaced { margin-top: 9px; } footer { margin-top: 20px; flex-wrap: wrap; }
+  a { color: #c1d9d1; text-underline-offset: 3px; }
+  @media (max-width: 580px) {
+    .counters thead { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+    .counters table, .counters tbody { display: block; }
+    .counters tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 8px 0; border-top: 1px solid #454845; }
+    .counters th, .counters td { padding: 0; }
+    .counters td:nth-child(3), .counters td:nth-child(4), .counters td:nth-child(5) { grid-column: 1 / -1; display: flex; justify-content: space-between; }
+    .counters td:nth-child(3)::before { content: "95% interval"; color: #c1c7c2; }
+    .counters td:nth-child(4)::before { content: "Raw p"; color: #c1c7c2; }
+    .counters td:nth-child(5)::before { content: "Holm p"; color: #c1c7c2; }
+    .counters td small { display: inline; }
+  }
+  @media (max-width: 450px) {
+    main { margin: 14px auto; padding: 0 10px; }
+    article { padding: 16px; } .values { gap: 14px; } .row { gap: 8px; }
+  }
+</style>
+<main>
+  <article aria-labelledby="title" style="--accent: #f0ce85; --tint: #3e3625">
+    <header><h1 id="title">VectorCodecBenchmark.decompress</h1><span class="badge">INCONCLUSIVE</span></header>
+    <p class="context">16-bit plain decode · Original timing and fresh eight-block counters · 476bd9f4 → f61c04c2</p>
+    <dl class="values">
+      <div><dt>Change in time per operation</dt><dd class="estimate">+1.41%</dd></div>
+      <div><dt>95% confidence interval</dt><dd class="bounds">−1.17% to +4.04%</dd></div>
+    </dl>
+    <figure aria-label="Relative change in time per operation +1.41%. 95% confidence interval −1.17% to +4.04%.">
+      <div class="plot" aria-hidden="true">
+        <div class="axis"></div><div class="zero"></div><div class="interval" style="left: 40.242750%; width: 43.415512%"></div><div class="point"></div>
+        <span class="tick" style="left:0">−6%</span><span class="tick" style="left:25%">−3%</span>
+        <span class="tick" style="left:50%">0%</span><span class="tick" style="left:75%">+3%</span>
+        <span class="tick" style="left:100%">+6%</span>
+      </div>
+      <figcaption>Positive values mean slower. The two-sided timing test gave <span class="num">p = 0.2559</span> at the planned final check.</figcaption>
+    </figure>
+    <div class="counters"><table aria-label="Profiled counter changes">
+      <thead><tr><th scope="col">Counter</th><th scope="col">Change</th><th scope="col">95% interval</th><th scope="col">p</th><th scope="col">Holm p</th></tr></thead>
+      <tbody><tr><th scope="row">Cycles/op</th><td>+3.05%</td><td>−2.55% to +10.43%</td><td>0.3359</td><td>1</td></tr>
+<tr><th scope="row">Instructions/op</th><td>+0.21%</td><td>−0.41% to +0.89%</td><td>0.4531</td><td>1</td></tr>
+<tr><th scope="row">Allocated heap B/op</th><td>+0.0007296</td><td>−0.0009946 to +0.002642</td><td>0.3594</td><td>1</td></tr></tbody>
+    </table></div>
+    <p class="note">Intervals apply to each counter individually. An increase or decrease is highlighted when its Holm-adjusted p ≤ 0.05 across the three counters for this case.</p>
+    <dl class="details">
+      <div class="row spaced"><dt>Timing blocks / JVM forks</dt><dd>12 / 48</dd></div>
+      <div class="row"><dt>Profiled blocks / JVM forks</dt><dd>8 / 32</dd></div>
+      <div class="row"><dt>A/A-calibrated slowdown MDE</dt><dd>3.6% at 80% power</dd></div>
+    </dl>
+    <footer><span>CPU 2 · Performance governor · Fixed 12-block timing verdict</span><a href="data/analysis.json">Measured results</a></footer>
+  </article>
+</main>
+</html>

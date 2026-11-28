@@ -12,6 +12,27 @@ def signed_pct(value, digits=2):
     return f"{value:+.{digits}f}%".replace("-", "−")
 
 
+def counter_rows(profiled):
+    names = {"cycles": "Cycles/op", "instructions": "Instructions/op", "gc.alloc.rate.norm": "Allocated heap B/op"}
+    rows = []
+    for key, name in names.items():
+        metric = profiled["counters"][key]
+        def display(value):
+            return signed_pct(value) if metric["unit"] == "%" else f"{value:+.4g}".replace("-", "−")
+        interval = "Unavailable"
+        if "ci" in metric:
+            ci = metric["ci"]
+            interval = ("All possible changes" if ci["lower"] is None else
+                        f'{display(ci["lower"])} to {display(ci["upper"])}')
+        estimate = display(metric["change"])
+        if metric.get("direction"):
+            estimate = f'<strong>{estimate} <small>{metric["direction"]}</small></strong>'
+        p, adjusted = (f"{metric[k]:.4g}" if k in metric else "—" for k in ("p", "p_holm"))
+        rows.append(f'<tr><th scope="row">{name}</th><td>{estimate}</td><td>{interval}</td>'
+                    f'<td>{p}</td><td>{adjusted}</td></tr>')
+    return "\n".join(rows)
+
+
 def write_timing_card(timing, profiled, mde, source, destination, *, title, context, cpu):
     ci = timing["timing_ci"]
     low, high = ci["lower_pct"], ci["upper_pct"]
@@ -33,9 +54,6 @@ def write_timing_card(timing, profiled, mde, source, destination, *, title, cont
                         f'width: {position(high) - position(low):.6f}%"></div>')
 
     template = Template(Path(__file__).with_name("report_card.html.template").read_text())
-    counters = profiled["counters"]
-    allocation = counters["gc.alloc.rate.norm"]["change"]
-    allocation_text = f"{allocation:+.2g}" if 0 < abs(allocation) < .0005 else f"{allocation:+.3f}"
     html = template.substitute(
         title=escape(title), context=escape(context), cpu=cpu,
         verdict=verdict, accent=accent, tint=tint, estimate=signed_pct(effect),
@@ -43,8 +61,7 @@ def write_timing_card(timing, profiled, mde, source, destination, *, title, cont
         estimate_position=f"{position(effect):.6f}", left_tick=signed_pct(-limit, 0),
         left_half_tick=signed_pct(-limit / 2, 0), right_half_tick=signed_pct(limit / 2, 0),
         right_tick=signed_pct(limit, 0), p_value=f'{timing["p"]:.4g}',
-        cycles=signed_pct(counters["cycles"]["change"]), instructions=signed_pct(counters["instructions"]["change"]),
-        allocation=allocation_text + " B/op",
+        counter_rows=counter_rows(profiled),
         timing_counts=f'{timing["blocks"]} / {timing["forks"]}', profile_counts=f'{profiled["blocks"]} / {profiled["forks"]}',
         mde="Unattainable at this budget" if mde is None else f"{mde:g}% at 80% power",
         blocks=timing["blocks"], source=escape(quote(os.path.relpath(source, destination.parent))),

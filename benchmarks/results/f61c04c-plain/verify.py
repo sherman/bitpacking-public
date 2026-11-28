@@ -13,7 +13,12 @@ import re
 import random
 from statistics import geometric_mean, mean
 import subprocess
+import sys
 import zipfile
+
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from harness.tests.counter_oracle import verify_profile
 
 
 def exact_p(ds, h=0.0):
@@ -149,13 +154,7 @@ def main():
             h = math.log1p(bound/100)
             assert exact_p(ds,h + direction*1e-8)>.05 and exact_p(ds,h - direction*1e-8)<=.05
         assert t["verdict"] == ("INCONCLUSIVE" if t["p"]>.05 else ("IMPROVED" if mean(ds)<0 else "REGRESSED"))
-        for metric, saved in result["profile"]["counters"].items():
-            a,b=parts([r for g in profile for r in g])
-            def vals(rows):
-                return [r["jmh"]["secondaryMetrics"][metric]["score"] for r in rows]
-            estimate = (mean(vals(b))-mean(vals(a)) if metric=="gc.alloc.rate.norm" else
-                        100*(geometric_mean(vals(b))/geometric_mean(vals(a))-1))
-            near(estimate,saved["change"])
+        verify_profile(profile, result["profile"])
         # Descriptive within-fork check: first to last measured iteration per build.
         drift[key]={}
         for side in ("A","B"):
@@ -169,6 +168,7 @@ def main():
     assert len(results)==14
     summary=dict(complete_forks=1344, governor_boundary_readings=2688, verified_console_records=len(logged),
                  verified_timing_intervals_and_p_values=len(results), verified_counter_changes=3*len(results),
+                 verified_counter_intervals_and_raw_and_holm_p_values=3*len(results),
                  verified_calibration_forecasts=len(forecasts),
                  verified_13_bit_trace_rows=len(trace_ids), class_entries_compared=len(classes),
                  different_classes=different_classes, changed_width_specific_methods=changed_methods,

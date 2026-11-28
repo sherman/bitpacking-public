@@ -38,7 +38,7 @@ Every case has eight parent-versus-parent calibration blocks, twelve unprofiled 
 The timing verdict uses one prespecified two-sided test per case. Confidence intervals are per case.
 All completed forks are included. The governor is checked before, during and after each fork.</p>
 <p>Calibration estimates the slowdown detectable with 80% power at twelve timing blocks. Profiled cycle and instruction changes use paired log ratios.
-Allocation is the candidate-minus-parent difference in Java heap bytes per 16-block JMH operation. These counters are diagnostic.</p>
+Allocation is the candidate-minus-parent difference in Java heap bytes per 16-block JMH operation. Four profiled blocks give a minimum two-sided p of 0.125. All 95% counter intervals span every possible change. Each card shows the raw and Holm-adjusted p-values.</p>
 <p>The commit changes the width-specific plain pack or unpack bodies at 1, 13 and 25 bits in this set. The corresponding bodies at
 3, 8, 16 and 31 bits match between revisions. The measurements compare the two compiled JARs, including their JIT and code layout.</p>
 <footer><a href="13-bit-trace.md">Step-by-step 13-bit execution log</a> · <a href="data/analysis.json">Analysis</a> ·

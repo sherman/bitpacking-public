@@ -47,3 +47,25 @@ class CollectorTest(unittest.TestCase):
             self.assertEqual([row["stage"] for row in rows], ["calibration"] * 4 + ["timing"] * 4)
             with gzip.open(out / "console.txt.gz", "rt") as log:
                 self.assertIn("Fork rejected: governor changed", log.read())
+
+    def test_profile_forecast_is_frozen_before_profile_ab(self):
+        plan = make_schedule([{"name": "decode"}], seed=3, calibration_blocks=1, timing_blocks=1,
+                             profile_calibration_blocks=1, profile_blocks=8)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)
+            def record(entry, settings, forks, *, profiled):
+                stage = entry["stage"]
+                self.assertEqual((out / "profile-calibration.json").exists(), stage == "profile")
+                self.assertEqual(profiled, stage in ("profile", "profile_aa"))
+                builds = "".join(f[0] for f in forks)
+                self.assertEqual(builds, "AAAA" if stage in ("profile_aa", "calibration") else entry["order"])
+                metrics = {k: {"score": 1} for k in ("cycles", "instructions", "gc.alloc.rate.norm")}
+                return [dict(label=s, jmh={"primaryMetric": {"score": 1}, "secondaryMetrics": metrics})
+                        for s in entry["order"]]
+            with patch("harness.runner.fork_recorder") as recorder, redirect_stdout(io.StringIO()):
+                recorder.return_value.__enter__.return_value = record
+                run_schedule(out, plan, {"A": "a.jar", "B": "b.jar"}, None, lambda e: ("key", "test", {}),
+                             profile_grid={k: [1] for k in ("cycles", "instructions", "gc.alloc.rate.norm")})
+            forecast = json.loads((out / "profile-calibration.json").read_text())["cases"]["key"]
+            self.assertEqual(forecast["blocks"], 8)
+            self.assertEqual(forecast["detection"]["cycles"], {"1": 1.0})

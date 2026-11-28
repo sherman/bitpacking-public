@@ -1,0 +1,421 @@
+{
+  "started": "2026-11-28T18:14:14.849023+00:00",
+  "seed": 2611282113,
+  "cpu": 2,
+  "policy": {
+    "scaling_driver": "amd-pstate-epp",
+    "scaling_governor": "performance",
+    "energy_performance_preference": "performance",
+    "scaling_min_freq": "600000",
+    "scaling_max_freq": "5573000"
+  },
+  "power_profile": "performance",
+  "builds": {
+    "A": {
+      "revision": "476bd9f401116d85083ca93178c5f364640046b8",
+      "jar": "builds/baseline.jar",
+      "sha256": "b3507c4f5c5ee1ee7a5eb3635bd2fd47fdf04ec7a5678b781ba75df0a154fdd8",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "136a09c534928097755d7e5d01de8e99229845bda4c17ad73a80e8aeeaa663e6"
+    },
+    "B": {
+      "revision": "f61c04c2141fe70571af97a8ae3dedebe7d924a1",
+      "jar": "builds/candidate.jar",
+      "sha256": "1f40cef38603cdb18c095e8ff499b810cbadd6419157a6750c450ee7dc401ef5",
+      "benchmark_sha256": "883c8104a015900cf051a4934c3d23639f6e913693dfdbecc36c073b26fc7203",
+      "kernel_sha256": "0ea426dd13eea0577a0ce670660604e31a47309fd6bbfe0102ced0a60e9afa34"
+    }
+  },
+  "java_version": "java version \"25.0.1\" 2025-10-21 LTS\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)\n",
+  "codec_settings": {
+    "cpu": 2,
+    "java": "/home/sherman/.sdkman/candidates/java/25.0.1-oracle/bin/java",
+    "jvm_args": [
+      "--add-modules=jdk.incubator.vector"
+    ],
+    "warmup_iterations": 2,
+    "warmup_time": "500ms",
+    "measurement_iterations": 3,
+    "measurement_time": "250ms"
+  },
+  "control_settings": {
+    "cpu": 2,
+    "java": "/home/sherman/.sdkman/candidates/java/25.0.1-oracle/bin/java",
+    "jvm_args": [
+      "-Xms256m",
+      "-Xmx256m"
+    ],
+    "warmup_iterations": 2,
+    "warmup_time": "500ms",
+    "measurement_iterations": 3,
+    "measurement_time": "250ms"
+  },
+  "fixture_sha256": "9d7853f3b17d193b85f35876730e7822db458c3fee42f478d5fd412a0491e577",
+  "processor_sha256": "6a5604b5b804e0daca1145df1077609321687734a8b49387e49f10557c186c77",
+  "control_jar_sha256": "a2cb12b61360d36b0252cd4a54386556c7fa7cdc83ca7ef43f48bcef3b28a369",
+  "blocks": 8,
+  "alpha": 0.05,
+  "sensitivity_grid": {
+    "cycles": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "instructions": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "gc.alloc.rate.norm": [
+      0.001,
+      0.01,
+      0.1,
+      1,
+      16,
+      256
+    ]
+  },
+  "draws": 2000,
+  "plan": [
+    {
+      "sequence": 1,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 1,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 2,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 1,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 3,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 4,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 5,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 6,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 3,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 7,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 8,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 9,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 5,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 10,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 5,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 11,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 6,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 12,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 13,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 7,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 14,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 7,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 15,
+      "stage": "profile_aa",
+      "case": "encode",
+      "block": 8,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 16,
+      "stage": "profile_aa",
+      "case": "decode",
+      "block": 8,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 17,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 1,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 18,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 1,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 19,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 20,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 2,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 21,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 22,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 3,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 23,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 24,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 25,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 5,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 26,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 5,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 27,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 28,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 29,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 7,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 30,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 7,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 31,
+      "stage": "profile_ab",
+      "case": "encode",
+      "block": 8,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 32,
+      "stage": "profile_ab",
+      "case": "decode",
+      "block": 8,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 33,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 1,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 34,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 1,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 35,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 2,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 36,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 2,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 37,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 38,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 3,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 39,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 4,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 40,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 4,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 41,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 5,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 42,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 5,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 43,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 6,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 44,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 6,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 45,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 7,
+      "order": "ABBA"
+    },
+    {
+      "sequence": 46,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 7,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 47,
+      "stage": "controls",
+      "case": "cpu",
+      "block": 8,
+      "order": "BAAB"
+    },
+    {
+      "sequence": 48,
+      "stage": "controls",
+      "case": "allocation",
+      "block": 8,
+      "order": "BAAB"
+    }
+  ]
+}

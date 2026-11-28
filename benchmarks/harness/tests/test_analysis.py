@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from harness.analysis import ALPHA, log_effect, percent, profile_summary, sign_p, timing_inference, timing_summary
+from harness.analysis import ALPHA, holm_adjust, log_effect, percent, profile_sensitivity, profile_summary, sign_p, timing_inference, timing_summary
 from harness.cpu_policy import run_checked_fork
 from harness.runner import make_schedule
 
@@ -91,11 +91,89 @@ class FixedBudgetProtocolTest(unittest.TestCase):
                         "gc.alloc.rate.norm": 64 if label == "B" else 0}
             group.append(dict(label=label, jmh={"secondaryMetrics": {k: {"score": v} for k, v in counters.items()}}))
         result = profile_summary([group])["counters"]
-        self.assertEqual(result["gc.alloc.rate.norm"], {"change": 64, "unit": "B/op"})
+        allocation = result["gc.alloc.rate.norm"]
+        self.assertEqual((allocation["change"], allocation["unit"]), (64, "B/op"))
+        self.assertIsNone(allocation["ci"]["lower"])
+        self.assertIsNone(allocation["ci"]["upper"])
+        self.assertEqual(allocation["p"], 1)
+        self.assertIsNone(allocation["direction"])
         self.assertAlmostEqual(result["cycles"]["change"], 20)
         self.assertEqual(result["instructions"]["change"], 0)
         with self.assertRaises(ValueError):
             profile_summary([group[:-1]])
+
+    def test_profile_intervals_units_and_holm_decisions(self):
+        groups = []
+        for i in range(8):
+            order = ("ABBA", "BAAB")[i % 2]
+            group = []
+            for label in order:
+                b = label == "B"
+                values = {"cycles": 100, "instructions": 90 if b else 100, "gc.alloc.rate.norm": i+1 if b else 0}
+                group.append(dict(label=label, jmh={"secondaryMetrics": {k: {"score": v} for k,v in values.items()}}))
+            groups.append(group)
+        result = profile_summary(groups)["counters"]
+        a, cpu = result["gc.alloc.rate.norm"], result["instructions"]
+        self.assertEqual((a["change"], a["p"], a["p_holm"], a["direction"]), (4.5, 2/256, 6/256, "increase"))
+        self.assertEqual((cpu["p_holm"], cpu["direction"]), (6/256, "decrease"))
+        self.assertAlmostEqual(cpu["ci"]["lower"], -10)
+        self.assertAlmostEqual(cpu["ci"]["upper"], -10)
+        self.assertEqual(result["cycles"]["p_holm"], 1)
+        self.assertIsNone(result["cycles"]["direction"])
+        # Invert by enumerating signs directly on the additive B/op scale.
+        signs = list(itertools.product((-1, 1), repeat=8))
+        for shift in [k/16 for k in range(160)]:
+            xs = [i - shift for i in range(1, 9)]
+            count = sum(abs(sum(s*x for s,x in zip(mask, xs))) >= abs(sum(xs)) for mask in signs)
+            self.assertEqual(a["ci"]["lower"] <= shift <= a["ci"]["upper"], count/256 > ALPHA)
+        short = profile_summary(groups[:6])["counters"]["gc.alloc.rate.norm"]
+        self.assertLess(short["p"], ALPHA)
+        self.assertGreater(short["ci"]["lower"], 0)
+        self.assertGreater(short["p_holm"], ALPHA)
+        self.assertIsNone(short["direction"])
+
+    def test_holm_adjustment_retains_running_max_and_caps_at_one(self):
+        self.assertEqual(holm_adjust({"c": .8, "a": .02, "b": .025}), {"a": .06, "b": .06, "c": .8})
+        self.assertEqual(holm_adjust({"a": .9, "b": .8, "c": .7}), {"a": 1, "b": 1, "c": 1})
+
+    def test_profile_calibration_respects_fixed_budget_and_three_counter_family(self):
+        group = [dict(label=side, jmh={"secondaryMetrics": {k: {"score": score} for k, score in
+                 (("cycles", 10), ("instructions", 10), ("gc.alloc.rate.norm", 0))}}) for side in "ABBA"]
+        grid = {k: [2] for k in group[0]["jmh"]["secondaryMetrics"]}
+        for n, expected in ((4, 0), (6, 0), (8, 1)):
+            forecast = profile_sensitivity([group], n, grid, draws=4)
+            self.assertEqual(forecast["family_false_call_rate"], 0)
+            self.assertEqual(forecast["detection"], {k: {"2": expected} for k in grid})
+
+    def test_joint_profile_bootstrap_preserves_cross_counter_noise(self):
+        # All three counters share the same block effect on their analysis scale.
+        # Under the global null their tied p-values receive a factor of three.
+        groups = []
+        for noise in (1, 2, 3, 4, 5):
+            group = []
+            for side in "ABBA":
+                x = noise if side == "B" else 0
+                values = {"cycles": 2**x, "instructions": 2**x, "gc.alloc.rate.norm": x}
+                group.append(dict(label=side, jmh={"secondaryMetrics": {k: {"score": v} for k,v in values.items()}}))
+            groups.append(group)
+        grid = {key: [1] for key in values}
+        forecast = profile_sensitivity(groups, 8, grid, draws=100, seed=42)
+        masks = list(itertools.product((-1, 1), repeat=8))
+        def brute_p(xs):
+            return sum(abs(sum(s*x for s, x in zip(mask, xs))) >= abs(sum(xs)) for mask in masks) / len(masks)
+        rng = random.Random(42)
+        false_calls = hits = 0
+        for _ in range(100):
+            xs = [rng.choice((1, 2, 3, 4, 5)) * rng.choice((-1, 1)) for _ in range(8)]
+            null_p = brute_p(xs)
+            false_calls += 3*null_p <= .05
+            shifted = [x+1 for x in xs]
+            target_p = brute_p(shifted)
+            # Closed Bonferroni intersections containing the single shifted counter.
+            adjusted = max(target_p, 3*min(target_p, null_p))
+            hits += sum(shifted) > 0 and adjusted <= .05
+        self.assertEqual(forecast["family_false_call_rate"], false_calls/100)
+        self.assertEqual(forecast["detection"]["gc.alloc.rate.norm"]["1"], hits/100)
 
     def test_timing_interval_inverts_exhaustive_test_including_endpoints(self):
         ds = [x / 128 for x in (-4, -2, -1, 0, 1, 1, 4, 8)]

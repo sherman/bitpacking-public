@@ -9,6 +9,8 @@ from statistics import mean
 COUNTERS = ("cycles", "instructions", "gc.alloc.rate.norm")
 ALPHA = 0.05
 SHIFTS = [0, 0.5, 1, 2, 3, 5, 10]
+PROFILE_SHIFTS = {"cycles": [1, 2, 5, 10, 20], "instructions": [1, 2, 5, 10, 20],
+                  "gc.alloc.rate.norm": [0.001, 0.01, 0.1, 1, 16, 256]}
 
 
 def log_effect(values, order):
@@ -41,11 +43,11 @@ def percent(log_ratio):
     return 100 * math.expm1(log_ratio)
 
 
-def timing_inference(effects, alpha=ALPHA):
-    """Invert the two-sided block sign-flip test of a common shift in log time."""
+def shift_inference(effects, alpha=ALPHA):
+    """Invert the two-sided block sign-flip test on the supplied additive scale."""
     n = len(effects)
     if not n or not all(map(math.isfinite, effects)) or not 0 < alpha < 1:
-        raise ValueError("Expected finite block log ratios and 0 < alpha < 1")
+        raise ValueError("Expected finite block effects and 0 < alpha < 1")
     # Opposite sign assignments have the same absolute statistic. Keep one per pair.
     exact = n <= 20
     if exact:
@@ -77,11 +79,19 @@ def timing_inference(effects, alpha=ALPHA):
     # Every interval contains the overall mean. p(h) > alpha therefore describes
     # one closed interval. Count ties inclusively, as in the verdict test.
     rank = math.floor(alpha * total) - always  # zero-based endpoint rank
-    low_pct = percent(lower[rank]) if rank >= 0 else None
-    high_pct = percent(upper[-1 - rank]) if rank >= 0 else None
+    low = lower[rank] if rank >= 0 else None
+    high = upper[-1 - rank] if rank >= 0 else None
     p = (always + sum(v <= 0 for v in lower) - sum(v < 0 for v in upper)) / total
-    return dict(p=p, timing_ci=dict(confidence=1 - alpha, lower_pct=low_pct, upper_pct=high_pct,
-                                    method="exact_sign_flip" if exact else "sampled_sign_flip"))
+    return p, dict(confidence=1 - alpha, lower=low, upper=high,
+                   method="exact_sign_flip" if exact else "sampled_sign_flip")
+
+
+def timing_inference(effects, alpha=ALPHA):
+    p, ci = shift_inference(effects, alpha)
+    return dict(p=p, timing_ci=dict(confidence=ci["confidence"],
+                                    lower_pct=percent(ci["lower"]) if ci["lower"] is not None else None,
+                                    upper_pct=percent(ci["upper"]) if ci["upper"] is not None else None,
+                                    method=ci["method"]))
 
 
 def minimum_detectable_effects(noise, budgets, draws=2000):
@@ -153,10 +163,62 @@ def timing_summary(groups):
     return timing
 
 
+def holm_adjust(p_values):
+    """Control family-wise error across the supplied metric names."""
+    adjusted = {}
+    running = 0.0
+    for rank, (key, p) in enumerate(sorted(p_values.items(), key=lambda item: item[1])):
+        running = max(running, min(1.0, (len(p_values) - rank) * p))
+        adjusted[key] = running
+    return adjusted
+
+
 def profile_summary(groups):
     counters = {}
     for key in COUNTERS:
-        ds = [paired_change(g, key) for g in groups]
-        counters[key] = dict(change=mean(ds) if key == "gc.alloc.rate.norm" else percent(mean(ds)),
-                             unit="B/op" if key == "gc.alloc.rate.norm" else "%")
+        effects = [paired_change(group, key) for group in groups]
+        p, ci = shift_inference(effects)
+        change = mean(effects)
+        unit = "B/op" if key == "gc.alloc.rate.norm" else "%"
+        if unit == "%":
+            change = percent(change)
+            for bound in ("lower", "upper"):
+                if ci[bound] is not None:
+                    ci[bound] = percent(ci[bound])
+        counters[key] = dict(change=change, unit=unit, ci=ci, p=p)
+    for key, adjusted in holm_adjust({k: v["p"] for k, v in counters.items()}).items():
+        counter = counters[key]
+        counter["p_holm"] = adjusted
+        counter["direction"] = None
+        if adjusted <= ALPHA:
+            counter["direction"] = "increase" if counter["change"] > 0 else "decrease"
     return dict(blocks=len(groups), forks=4 * len(groups), counters=counters)
+
+
+def profile_sensitivity(groups, budget, grid=PROFILE_SHIFTS, *, draws=2000, seed=405813):
+    """Resample whole three-counter vectors, preserving their randomized shared sign."""
+    if not groups or not 1 <= budget <= 20 or draws < 1:
+        raise ValueError("Profile calibration requires A/A blocks, a positive draw count and an exact-test budget of 1–20 blocks")
+    if set(grid) != set(COUNTERS) or any(not math.isfinite(s) or s <= 0 for shifts in grid.values() for s in shifts):
+        raise ValueError("Supply positive finite increases for each of the three counters")
+    vectors = [tuple(paired_change(group, k) for k in COUNTERS) for group in groups]
+    hits = {k: [0] * len(shifts) for k, shifts in grid.items()}
+    false_calls = 0
+    rng = random.Random(seed)
+    for _ in range(draws):
+        sample = []
+        for _ in range(budget):
+            vector, sign = rng.choice(vectors), rng.choice((-1, 1))
+            sample.append(tuple(sign * value for value in vector))
+        columns = dict(zip(COUNTERS, zip(*sample)))
+        null = {k: sign_p(xs) for k, xs in columns.items()}
+        false_calls += min(holm_adjust(null).values()) <= ALPHA
+        for key, xs in columns.items():
+            for i, shift in enumerate(grid[key]):
+                delta = shift if key == "gc.alloc.rate.norm" else math.log1p(shift / 100)
+                shifted = [x + delta for x in xs]
+                p = sign_p(shifted)
+                hits[key][i] += math.fsum(shifted) > 0 and holm_adjust({**null, key: p})[key] <= ALPHA
+    return dict(draws=draws, blocks=budget, family_false_call_rate=false_calls / draws,
+                detection={key: {str(shift): n / draws for shift, n in zip(grid[key], counts)}
+                           for key, counts in hits.items()})
